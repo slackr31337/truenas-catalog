@@ -17,7 +17,7 @@ data:
       # Optional: client id (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       client_id: frigate
-      
+
     # Optional: Detectors configuration. Defaults to a single CPU detector
     detectors:
       coral:
@@ -26,8 +26,8 @@ data:
       cpu1:
         type: cpu
         num_threads: 2
-    ffmpeg:
-      global_args: -hide_banner -loglevel debug
+    #ffmpeg:
+    #  global_args: -hide_banner -loglevel debug
     cameras:
 {{- range .Values.frigate.cameras }}
       # Required: name of the camera
@@ -42,16 +42,16 @@ data:
           width: {{ .detect.width }}
           height: {{ .detect.height }}
         # Required: ffmpeg settings for the camera
-        ffmpeg:
+        #ffmpeg:
           # Required: A list of input streams for the camera. See documentation for more information.
-          inputs:
-            {{- range .inputs }}
-            - path: {{ .path }}
-              roles:
-                {{- range .roles }}
-                - {{ . }}
-                {{- end }}
-            {{- end }}
+        #  inputs:
+        #    {{- range .inputs }}
+        #    - path: {{ .path }}
+        #      roles:
+        #        {{- range .roles }}
+        #        - {{ . }}
+        #        {{- end }}
+        #    {{- end }}
         record:
           enabled: {{ .record.enabled }}
         # Optional: timeout for highest scoring image before allowing it
