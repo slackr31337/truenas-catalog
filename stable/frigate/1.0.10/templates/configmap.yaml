@@ -43,15 +43,15 @@ data:
 
     # Optional: Detectors configuration. Defaults to a single CPU detector
     detectors:
-     #Required: 'Google TPU'
+     #Required: name of the detector
 {{- if .Values.persistence.coral }}
 {{- if .Values.persistence.coral.enabled }}
-      #coral:
+      coral:
         # Required: type of the detector
         # Valid values are 'edgetpu' (requires device property below) and 'cpu'.
-      #  type: edgetpu
+        type: edgetpu
         # Optional: device name as defined here: https://coral.ai/docs/edgetpu/multiple-edgetpu/#using-the-tensorflow-lite-python-api
-      #  device: usb
+        device: usb
 {{- else }}
       cpu1:
         type: cpu
@@ -292,7 +292,7 @@ data:
       # Optional: Set the height of the live stream. (default: 720)
       # This must be less than or equal to the height of the detect stream. Lower resolutions
       # reduce bandwidth required for viewing the live stream. Width is computed to match known aspect ratio.
-      height: 720
+      # height: 720
       # Optional: Set the encode quality of the live stream (default: shown below)
       # 1 is the highest quality, and 31 is the lowest. Lower quality feeds utilize less CPU resources.
       quality: 8
@@ -319,40 +319,40 @@ data:
       #           None (No effect),
       #           "solid" (solid background in inverse color of font)
       #           "shadow" (shadow for font)
-      #effect: solid
+      effect: solid
 
     # Required
-    #cameras:
-#{{- range .Values.frigate.cameras }}
+    cameras:
+{{- range .Values.frigate.cameras }}
       # Required: name of the camera
-      #{{ .name }}:
-      #  objects:
+      {{ .name }}:
+        objects:
           # Optional: list of objects to track from labelmap.txt (default: shown below)
-      #    track:
-      #      {{- range .objects.track }}
-      #        - {{ . }}
-      #      {{- end }}
-      #  detect:
-      #    width: {{ .detect.width }}
-      #    height: {{ .detect.height }}
+          track:
+            {{- range .objects.track }}
+              - {{ . }}
+            {{- end }}
+        detect:
+          width: {{ .detect.width }}
+          height: {{ .detect.height }}
         # Required: ffmpeg settings for the camera
-      #  ffmpeg:
+        ffmpeg:
           # Required: A list of input streams for the camera. See documentation for more information.
-      #    inputs:
-      #      {{- range .inputs }}
-      #      - path: {{ .path }}
-      #        roles:
-      #          {{- range .roles }}
-      #          - {{ . }}
-      #          {{- end }}
-      #      {{- end }}
-      #  record:
-      #    enabled: {{ .record.enabled }}
+          inputs:
+            {{- range .inputs }}
+            - path: {{ .path }}
+              roles:
+                {{- range .roles }}
+                - {{ . }}
+                {{- end }}
+            {{- end }}
+        record:
+          enabled: {{ .record.enabled }}
         # Optional: timeout for highest scoring image before allowing it
         # to be replaced by a newer image. (default: shown below)
-      #  best_image_timeout: 60
-      #  snapshots:
-      #    enabled: {{ .snapshots.enabled }}
+        best_image_timeout: 60
+        snapshots:
+          enabled: {{ .snapshots.enabled }}
 
         # Optional: zones for this camera
         # zones:
@@ -392,4 +392,4 @@ data:
           # quality: 70
           # Optional: Restrict mqtt messages to objects that entered any of the listed zones (default: no required zones)
           # required_zones: []
-#{{- end }}
+{{- end }}
