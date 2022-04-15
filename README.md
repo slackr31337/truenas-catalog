@@ -1,2 +1,2 @@
-## Custom Catalog for Frigate Testing & Deploying Purposes
+## Custom Catalog for Frigate Testing Purposes
 
