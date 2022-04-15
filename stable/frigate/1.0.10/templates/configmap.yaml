@@ -61,7 +61,6 @@ data:
 #{{- end }}
 #{{- end }}
 
-
     # Optional: Database configuration
     # database:
       # The path to store the SQLite DB (default: shown below)
