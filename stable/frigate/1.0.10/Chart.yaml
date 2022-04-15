@@ -1,18 +1,31 @@
 apiVersion: v2
-appVersion: "0.9.4"
+appVersion: "idia"
+dependencies:
+- name: common
+  repository: https://library-charts.truecharts.org
+  version: 9.2.8
+deprecated: false
 description: NVR With Realtime Object Detection for IP Cameras
-name: frigate
-version: 6.3.0
+home: https://github.com/truecharts/apps/tree/master/charts/incubator/frigate
+icon: https://truecharts.org/_static/img/appicons/frigate.png
 keywords:
-  - tensorflow
-  - coral
-  - ml
-home: https://github.com/blakeblackshear/blakeshome-charts/tree/master/charts/frigate
-icon: https://github.com/blakeblackshear/frigate/blob/master/docs/static/img/frigate.png
-sources:
-  - https://github.com/blakeblackshear/frigate
+- encode
+- nvr
+- media
+- frigate
+kubeVersion: '>=1.16.0-0'
 maintainers:
-  - name: blakeblackshear
-    email: blakeb@blakeshome.com
-  - name: billimek
-    email: jeff@billimek.com
+- email: info@truecharts.org
+  name: TrueCharts
+  url: https://truecharts.org
+name: frigate
+sources:
+- https://github.com/blakeblackshear/frigate
+- https://hub.docker.com/r/blakeblackshear/frigate
+type: application
+version: 1.0.10
+annotations:
+  truecharts.org/catagories: |
+    - nvr
+  truecharts.org/SCALE-support: "true"
+  truecharts.org/grade: U
