@@ -43,9 +43,9 @@ data:
 
     # Optional: Detectors configuration. Defaults to a single CPU detector
     detectors:
-     #Required: 'Detector'
-#{{- if .Values.persistence.coral }}
-#{{- if .Values.persistence.coral.enabled }}
+     Required: 'name of the detector'
+{{- if .Values.persistence.coral }}
+{{- if .Values.persistence.coral.enabled }}
       coral:
         # Required: type of the detector
         # Valid values are 'edgetpu' (requires device property below) and 'cpu'.
