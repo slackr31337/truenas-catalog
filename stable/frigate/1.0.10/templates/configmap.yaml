@@ -25,7 +25,7 @@ data:
         device: usb
       cpu1:
         type: cpu
-        num_threads: 1
+        num_threads: 2
     cameras:
 {{- range .Values.frigate.cameras }}
       # Required: name of the camera
@@ -39,3 +39,4 @@ data:
         detect:
           width: {{ .detect.width }}
           height: {{ .detect.height }}
+{{- end }}
