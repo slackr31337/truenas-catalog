@@ -43,7 +43,7 @@ data:
 
     # Optional: Detectors configuration. Defaults to a single CPU detector
     detectors:
-     #Required: name of the detector
+     Required: 'Detector'
 {{- if .Values.persistence.coral }}
 {{- if .Values.persistence.coral.enabled }}
       coral:
