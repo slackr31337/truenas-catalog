@@ -17,30 +17,7 @@ data:
       # Optional: client id (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       client_id: frigate
-{{- if .Values.frigate.mqtt.authenticated }}
-      user: {{ .Values.frigate.mqtt.username }}
-      password: {{ .Values.frigate.mqtt.password }}
-      # Optional: user
-      # user: mqtt_user
-      # Optional: password
-      # NOTE: MQTT password can be specified with an environment variables that must begin with 'FRIGATE_'.
-      #       e.g. password: '{FRIGATE_MQTT_PASSWORD}'
-      # password: password
-{{- end }}
-      # Optional: tls_ca_certs for enabling TLS using self-signed certs (default: None)
-      # tls_ca_certs: /path/to/ca.crt
-      # Optional: tls_client_cert and tls_client key in order to use self-signed client
-      # certificates (default: None)
-      # NOTE: certificate must not be password-protected
-      #       do not set user and password when using a client certificate
-      # tls_client_cert: /path/to/client.crt
-      # tls_client_key: /path/to/client.key
-      # Optional: tls_insecure (true/false) for enabling TLS verification of
-      # the server hostname in the server certificate (default: None)
-      # tls_insecure: false
-      # Optional: interval in seconds for publishing stats (default: shown below)
-      stats_interval: 60
-
+      
     # Optional: Detectors configuration. Defaults to a single CPU detector
     detectors:
       coral:
