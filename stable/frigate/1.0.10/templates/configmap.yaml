@@ -50,7 +50,6 @@ data:
         type: edgetpu
         # Optional: device name as defined here: https://coral.ai/docs/edgetpu/multiple-edgetpu/#using-the-tensorflow-lite-python-api
         device: usb
-        {{- else }}
       cpu1:
         type: cpu
         # Optional: num_threads value passed to the tflite.Interpreter (default: shown below)
