@@ -52,14 +52,14 @@ data:
         type: edgetpu
         # Optional: device name as defined here: https://coral.ai/docs/edgetpu/multiple-edgetpu/#using-the-tensorflow-lite-python-api
         device: usb
-#{{- else }}
+{{- else }}
       cpu1:
         type: cpu
         # Optional: num_threads value passed to the tflite.Interpreter (default: shown below)
         # This value is only used for CPU types
         num_threads: 2
-#{{- end }}
-#{{- end }}
+{{- end }}
+{{- end }}
     # Optional: ffmpeg configuration
     ffmpeg:
       # Optional: global ffmpeg args (default: shown below) warning instead of debug
