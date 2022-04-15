@@ -43,41 +43,14 @@ data:
 
     # Optional: Detectors configuration. Defaults to a single CPU detector
     detectors:
-     Required: 'name of the detector'
-{{- if .Values.persistence.coral }}
-{{- if .Values.persistence.coral.enabled }}
       coral:
-        # Required: type of the detector
-        # Valid values are 'edgetpu' (requires device property below) and 'cpu'.
         type: edgetpu
-        # Optional: device name as defined here: https://coral.ai/docs/edgetpu/multiple-edgetpu/#using-the-tensorflow-lite-python-api
         device: usb
-{{- else }}
       cpu1:
         type: cpu
-        # Optional: num_threads value passed to the tflite.Interpreter (default: shown below)
-        # This value is only used for CPU types
         num_threads: 2
-{{- end }}
-{{- end }}
-    # Optional: ffmpeg configuration
     ffmpeg:
-      # Optional: global ffmpeg args (default: shown below) warning instead of debug
       global_args: -hide_banner -loglevel debug
-      # Optional: global hwaccel args (default: shown below)
-      # NOTE: See hardware acceleration docs for your specific device
-      # hwaccel_args: []
-      # Optional: global input args (default: shown below)
-      # input_args: -avoid_negative_ts make_zero -fflags +genpts+discardcorrupt -rtsp_transport tcp -stimeout 5000000 -use_wallclock_as_timestamps 1
-      # Optional: global output args
-      # output_args:
-        # Optional: output args for detect streams (default: shown below)
-        # detect: -f rawvideo -pix_fmt yuv420p
-        # Optional: output args for record streams (default: shown below)
-        # record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy -an
-        # Optional: output args for rtmp streams (default: shown below)
-        # rtmp: -c copy -f flv
-    # Required
     cameras:
 {{- range .Values.frigate.cameras }}
       # Required: name of the camera
