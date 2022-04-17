@@ -2080,8 +2080,8 @@ questions:
                             label: ""
                             schema:
                               type: string
-  - variable: advancedSecurity
-    label: "Show Advanced Security Settings"
+  - variable: frigateSetting
+    label: "FrigateSettings"
     group: "Security and Permissions"
     schema:
       type: boolean
@@ -2099,47 +2099,6 @@ questions:
                 schema:
                   type: boolean
                   default: false
-              - variable: readOnlyRootFilesystem
-                label: "ReadOnly Root Filesystem"
-                schema:
-                  type: boolean
-                  default: false
-              - variable: allowPrivilegeEscalation
-                label: "Allow Privilege Escalation"
-                schema:
-                  type: boolean
-                  default: false
-              - variable: runAsNonRoot
-                label: "runAsNonRoot"
-                schema:
-                  type: boolean
-                  default: false
-              - variable: capabilities
-                label: "Capabilities"
-                schema:
-                  additional_attrs: true
-                  type: dict
-                  attrs:
-                    - variable: drop
-                      label: "Drop Capability"
-                      schema:
-                        type: list
-                        default: []
-                        items:
-                          - variable: dropEntry
-                            label: ""
-                            schema:
-                              type: string
-                    - variable: add
-                      label: "Add Capability"
-                      schema:
-                        type: list
-                        default: []
-                        items:
-                          - variable: addEntry
-                            label: ""
-                            schema:
-                              type: string
 
   - variable: podSecurityContext
     group: "Security and Permissions"
