@@ -49,6 +49,12 @@ questions:
             type: boolean
             default: true
             hidden: true
+  - variable: frigate-settings
+    group: "Frigate Settings"
+    label: ""
+    schema:
+      additional_attrs: true
+      type: dict
   - variable: controller
     group: "Controller"
     label: ""
