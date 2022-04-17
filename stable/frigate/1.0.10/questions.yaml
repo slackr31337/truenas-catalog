@@ -36,11 +36,7 @@ portals:
 questions:
   - variable: global
     label: "global settings"
-    group: "Frigate Config"
-    schema:
-      type: dict
-      hidden: false
-    group: "Controller"
+    group: "Frigate Settings"
     schema:
       type: dict
       hidden: true
