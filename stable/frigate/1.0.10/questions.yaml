@@ -36,9 +36,6 @@ portals:
     ports:
       - "$kubernetes-resource_configmap_portal_port"
 questions:
-  - variable: frigate-settings
-    label: "frigate settings"
-    group: "Frigate Settings"
   - variable: global
     label: "global settings"
     group: "Controller"
