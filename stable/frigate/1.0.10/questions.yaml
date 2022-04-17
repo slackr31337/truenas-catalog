@@ -4,7 +4,7 @@ groups:
   - name: "Controller"
     description: "Configure workload deployment"
   - name: "Frigate Settings"
-    descriptions: "Frigate Setup Config"
+    description: "Frigate Setup Config"
   - name: "Container Configuration"
     description: "additional container configuration"
   - name: "App Configuration"
