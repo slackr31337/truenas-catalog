@@ -3,8 +3,6 @@ groups:
     description: "Image to be used for container"
   - name: "Controller"
     description: "Configure workload deployment"
-  - name: "Frigate Settings"
-    description: "Frigate Setup Config"
   - name: "Container Configuration"
     description: "additional container configuration"
   - name: "App Configuration"
@@ -2080,6 +2078,7 @@ questions:
                             label: ""
                             schema:
                               type: string
+
   - variable: podSecurityContext
     group: "Security and Permissions"
     label: "Pod Security Context"
