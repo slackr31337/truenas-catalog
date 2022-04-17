@@ -1472,6 +1472,7 @@ questions:
                                   schema:
                                     type: string
 
+  - variable: frigate
   - variable: ingress
     label: ""
     group: "Ingress"
