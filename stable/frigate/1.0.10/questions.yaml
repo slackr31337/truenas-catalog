@@ -153,7 +153,7 @@ questions:
                             label: "Value"
                             schema:
                               type: string
-  - vairable: frigate-settings
+
   - variable: TZ
     label: "Timezone"
     group: "Container Configuration"
