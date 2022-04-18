@@ -34,6 +34,25 @@ portals:
     ports:
       - "$kubernetes-resource_configmap_portal_port"
 questions:
+- variable: volume
+  label: "Volume"
+  schema:
+    type: dict
+    $ref:
+      - "normalize/ixVolume"
+attrs:
+      - variable: mountPath
+        label: "Mount Path"
+        description: "Path where the volume will be mounted inside the pod"
+        schema:
+          type: path
+          required: true
+      - variable: datasetName
+label: "Dataset Name"
+        schema:
+          type: string
+          required: true
+
   - variable: global
     label: "global settings"
     group: "Controller"
