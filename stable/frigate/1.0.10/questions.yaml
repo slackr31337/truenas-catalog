@@ -2240,15 +2240,7 @@ questions:
     type: dict
     $ref:
       - "normalize/ixVolume"
-      
-      attrs:
-      - variable: mountPath
-        label: "Mount Path"
-        description: "Path where the volume will be mounted inside the pod"
-        schema:
-          type: path
-          required: true
-
+      attrs: []
 
   - variable: autoscaling
     group: "Advanced"
