@@ -2236,7 +2236,7 @@ questions:
       attrs: []
   - variable: frigateSetting
     label: "Frigate Settings"
-    group: "Resources and Devices"
+    group: "Frigate Settings"
     schema:
       type: dict
       $ref:
