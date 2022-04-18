@@ -2241,7 +2241,12 @@ questions:
       type: dict
       $ref:
         - "definitions/gpuConfiguration"
-      attrs: []
+      attrs:
+        - variable: Server
+          label: "MQTT Server"
+          schema:
+            type: string
+            default: ""
 
   - variable: autoscaling
     group: "Advanced"
