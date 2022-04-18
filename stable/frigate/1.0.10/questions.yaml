@@ -2232,7 +2232,7 @@ questions:
       $ref:
         - "definitions/gpuConfiguration"
       attrs: []
-  - variable: scaleGPU
+  - variable: frigateSetting
     label: "GPU Configuration"
     group: "Resources and Devices"
     schema:
