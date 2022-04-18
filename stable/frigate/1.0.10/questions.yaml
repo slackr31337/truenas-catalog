@@ -2235,8 +2235,8 @@ questions:
         - "definitions/gpuConfiguration"
       attrs: []
   - variable: frigateSetting
-    label: "Frigate Settings"
     group: "Frigate Settings"
+    label: "Frigate Settings"
     schema:
       type: dict
       $ref:
