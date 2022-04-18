@@ -3,6 +3,8 @@ groups:
     description: "Image to be used for container"
   - name: "Controller"
     description: "Configure workload deployment"
+  - name: "Frigate Settings"
+    description: "Frigate App Config"
   - name: "Container Configuration"
     description: "additional container configuration"
   - name: "App Configuration"
