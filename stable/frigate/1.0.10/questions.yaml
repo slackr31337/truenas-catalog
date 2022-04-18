@@ -2233,7 +2233,7 @@ questions:
         - "definitions/gpuConfiguration"
       attrs: []
   - variable: frigateSetting
-    label: "GPU Configuration"
+    label: "Frigate Settings"
     group: "Resources and Devices"
     schema:
       type: dict
