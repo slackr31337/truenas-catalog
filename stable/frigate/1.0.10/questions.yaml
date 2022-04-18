@@ -2232,14 +2232,13 @@ questions:
       $ref:
         - "definitions/gpuConfiguration"
       attrs: []
-  
-  - variable: volume
-    label: "Volume"
+  - variable: scaleGPU
+    label: "GPU Configuration"
     group: "Resources and Devices"
     schema:
-    type: dict
-    $ref:
-      - "normalize/ixVolume"
+      type: dict
+      $ref:
+        - "definitions/gpuConfiguration"
       attrs: []
 
   - variable: autoscaling
