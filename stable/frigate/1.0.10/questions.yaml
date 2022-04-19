@@ -2260,7 +2260,15 @@ questions:
             required: true
         - variable: pre
           label: "Topic Prefix"
-          description: "Optinal topic prefix, must be unique if you are running different instances"
+          description: "Optional topic prefix, must be unique if you are running different instances"
+          schema:
+            type: string
+            default: frigate
+            editable: false
+            required: false
+        - variable: client-id
+          label: "Client ID"
+          description: "Optional client id, must be unique if you are running different instances"
           schema:
             type: string
             default: frigate
