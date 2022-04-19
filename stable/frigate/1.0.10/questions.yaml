@@ -2258,7 +2258,6 @@ questions:
             default: 1883
             editable: true
             required: true
-        
         - variable: prefix-x
           label: "Topic Prefix"
           #label: "Topic Prefix"
