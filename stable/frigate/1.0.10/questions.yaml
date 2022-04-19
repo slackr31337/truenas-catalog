@@ -2243,13 +2243,22 @@ questions:
       type: dict
       attrs:
         - variable: Server
-          label: "MQTT Server"
+          label: "MQTT Server Hostname"
           description: "The Preferred MQTT Server"
           schema:
             type: string
             default: ""
             editable: true
             required: true
+        - variable: port
+          label: "Port"
+          description: "MQTT Server Port"
+          schema:
+            type: int
+            default: 1883
+            editable: true
+            required: true
+
         #- variable: detectors
         #  label: "Detectors Type"
         #  options: [cpu, TPU]
