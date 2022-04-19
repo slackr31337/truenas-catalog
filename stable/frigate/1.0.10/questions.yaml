@@ -2262,7 +2262,7 @@ questions:
           label: "Topic Prefix"
           description: "Optinal topic prefix, must be unique if you are running different instances"
           schema:
-            type: dict
+            type: list
             default: frigate
             editable: false
             required: false
