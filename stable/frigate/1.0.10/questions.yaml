@@ -2247,7 +2247,7 @@ questions:
           description: "The Preferred MQTT Server"
           schema:
             type: string
-            default: ""
+            default: "public.mqtthq.com"
             editable: true
             required: true
         - variable: port
