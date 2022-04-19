@@ -2282,6 +2282,21 @@ questions:
             default: frigate
             editable: false
             required: false
+            subquestions:
+              - variable: det
+                description: "Please specify type of workload to deploy"
+                label: "(Advanced) Controller Type"
+                schema:
+                  type: string
+                  default: "deployment"
+                  required: true
+                  enum:
+                    - value: "deployment"
+                      description: "Deployment"
+                    - value: "statefulset"
+                      description: "Statefulset"
+                    - value: "daemonset"
+                      description: "Daemonset"
           #schema:
             #type: string
             #default: "cpu"
