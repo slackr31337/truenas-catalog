@@ -2274,7 +2274,7 @@ questions:
             default: frigate
             editable: false
             required: false
-        - variable: detectors
+        - variable: "detectors"
           label: "Hardware Detectors"
           description: ""
           schema:
@@ -2283,8 +2283,8 @@ questions:
             enum:
               - value: "edgetpu"
               - value: "cpu"
-            editable: false
-            required: true
+            #editable: false
+            #required: true
         #- variable: prefix-x
         #  label: "Topic Prefix"
         #  description: ""
