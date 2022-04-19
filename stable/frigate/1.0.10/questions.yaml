@@ -2274,9 +2274,15 @@ questions:
             default: frigate
             editable: false
             required: false
-        - variable: detectors
-          label: "Hardware Detectors"
-          description: ""
+        - variable: type
+          label: "Service Type"
+          description: "ClusterIP's are only internally available, nodePorts expose the container to the host node System, Loadbalancer exposes the service using the system loadbalancer"
+          schema:
+          type: string
+          default: "Simple"
+          enum:
+            - value: "Simple"
+              description: "Simple"
           #schema:
             #type: string
             #default: "cpu"
