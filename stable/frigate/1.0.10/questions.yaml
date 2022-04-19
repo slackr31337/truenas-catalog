@@ -2274,29 +2274,19 @@ questions:
             default: frigate
             editable: false
             required: false
-        - variable: detectors
-          label: "Hardware Detectors"
-          description: "Optional client id, must be unique if you are running different instances"
-          schema:
-            type: string
-            default: frigate
-            editable: false
-            required: false
             subquestions:
-              - variable: det
-                description: "Please specify type of workload to deploy"
-                label: "(Advanced) Controller Type"
+              - variable: detectors
+                description: "Select the Hardware to Use"
+                label: "Hardware Detector Type"
                 schema:
                   type: string
-                  default: "deployment"
+                  default: "cpu"
                   required: true
                   enum:
-                    - value: "deployment"
-                      description: "Deployment"
-                    - value: "statefulset"
-                      description: "Statefulset"
-                    - value: "daemonset"
-                      description: "Daemonset"
+                    - value: "tpu"
+                      description: "coral"
+                    - value: "cpu"
+                      description: "core"
           #schema:
             #type: string
             #default: "cpu"
