@@ -2277,12 +2277,12 @@ questions:
         - variable: "detectors"
           label: "Hardware Detectors"
           description: ""
-          schema:
-            type: string
-            default: "cpu"
-            enum:
-              - value: "edgetpu"
-              - value: "cpu"
+          #schema:
+            #type: string
+            #default: "cpu"
+            #enum:
+            #  - value: "edgetpu"
+            #  - value: "cpu"
             #editable: false
             #required: true
         #- variable: prefix-x
