@@ -2258,8 +2258,8 @@ questions:
             default: 1883
             editable: true
             required: true
-        #- variable: prefix
-          #label: "Topic Prefix"
+        - variable: prefix-x
+          label: "Topic Prefix"
           #description: "Optinal topic prefix, must be unique if you are running different instances"
           #schema:
             #type: list
