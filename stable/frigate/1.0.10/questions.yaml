@@ -2275,14 +2275,13 @@ questions:
             editable: false
             required: false
         - variable: detectors
-          label: "Service Type"
-          description: "ClusterIP's are only internally available, nodePorts expose the container to the host node System, Loadbalancer exposes the service using the system loadbalancer"
+          label: "Hardware Detectors"
+          description: "Optional client id, must be unique if you are running different instances"
           schema:
-          type: string
-          default: "Simple"
-          enum:
-            - value: "Simple"
-              description: "Simple"
+            type: string
+            default: frigate
+            editable: false
+            required: false
           #schema:
             #type: string
             #default: "cpu"
