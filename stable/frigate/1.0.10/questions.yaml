@@ -2274,6 +2274,14 @@ questions:
             default: frigate
             editable: false
             required: false
+        - variable: shm-size
+          label: "Shared Memory"
+          description: "Shared Memory Size"
+          schema:
+            type: int
+            default: 64
+            editable: true
+            required: true
             subquestions:
               - variable: detectors
                 description: "Select the Hardware to Use"
