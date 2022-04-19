@@ -2260,7 +2260,7 @@ questions:
             required: true
         
         - variable: prefix-x
-        - label: "Topic Prefix"
+          label: "Topic Prefix"
           #label: "Topic Prefix"
           description: "Optinal topic prefix, must be unique if you are running different instances"
           #schema:
