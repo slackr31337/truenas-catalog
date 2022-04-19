@@ -2297,16 +2297,16 @@ questions:
                       description: "core"
               - variable: cameras
                 description: "Select the Camera to be Use"
-                label: "Hardware Detector Type"
+                label: "Camera Options"
                 schema:
                   type: string
-                  default: "cpu"
+                  default: "camera1"
                   required: true
                   enum:
-                    - value: "tpu"
-                      description: "coral"
-                    - value: "cpu"
-                      description: "core"
+                    - value: "cam1"
+                      description: "cam1"
+                    - value: "cam2"
+                      description: "cam2"
           #schema:
             #type: string
             #default: "cpu"
