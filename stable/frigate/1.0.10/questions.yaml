@@ -2279,7 +2279,7 @@ questions:
           description: ""
           schema:
             type: string
-            default: CPU
+            default: "cpu"
             enum:
               - value: "edgetpu"
               - value: "cpu"
