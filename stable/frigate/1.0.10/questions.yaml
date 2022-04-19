@@ -2264,6 +2264,8 @@ questions:
           schema:
             type: dict
             default: frigate
+            editable: false
+            required: false
 
         #- variable: detectors
         #  label: "Detectors Type"
