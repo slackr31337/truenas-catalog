@@ -2258,15 +2258,22 @@ questions:
             default: 1883
             editable: true
             required: true
-        - variable: prefix-x
-          label: "Topic Prefix"
-          #label: "Topic Prefix"
-          description: "Optinal topic prefix, must be unique if you are running different instances"
-          #schema:
-            #type: list
-            #default: frigate
-            #editable: false
-            #required: false
+        - variable: port
+          label: "Port"
+          description: "MQTT Server Port"
+          schema:
+            type: int
+            default: 1883
+            editable: true
+            required: true
+        #- variable: prefix-x
+        #  label: "Topic Prefix"
+        #  description: "Optinal topic prefix, must be unique if you are running different instances"
+        #  schema:
+        #    type: list
+        #    default: frigate
+        #    editable: false
+        #    required: false
 
         #- variable: detectors
         #  label: "Detectors Type"
