@@ -2274,7 +2274,7 @@ questions:
             default: frigate
             editable: false
             required: false
-        - variable: "detectors"
+        - variable: detectors
           label: "Hardware Detectors"
           description: ""
           #schema:
