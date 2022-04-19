@@ -2258,11 +2258,11 @@ questions:
             default: 1883
             editable: true
             required: true
-        - variable: tp
+        - variable: pre
           label: "Topic Prefix"
           description: "Optinal topic prefix, must be unique if you are running different instances"
           schema:
-            type: list
+            type: string
             default: frigate
             editable: false
             required: false
