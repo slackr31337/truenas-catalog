@@ -2234,19 +2234,31 @@ questions:
       $ref:
         - "definitions/gpuConfiguration"
       attrs: []
+  
   - variable: frigateSetting
     group: "Frigate Settings"
     label: "Frigate Settings"
     schema:
+      additional_attrs: true
       type: dict
-      $ref:
-        - "definitions/gpuConfiguration"
       attrs:
         - variable: Server
           label: "MQTT Server"
+          description: "The Preferred MQTT Server"
           schema:
             type: string
             default: ""
+            editable: true
+            required: true
+        #- variable: detectors
+        #  label: "Detectors Type"
+        #  options: [cpu, TPU]
+        #- variable: shm
+        #  label: Shared-Memory
+        #- variable: ffmpeg
+        #- variable: objects
+        #  type: list  
+        
 
   - variable: autoscaling
     group: "Advanced"
