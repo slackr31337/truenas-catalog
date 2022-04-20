@@ -7,10 +7,11 @@ metadata:
 data:
   config.yml: |
     mqtt:
+    {{- range .Values.frigate.cameras }}
       # Required: host name
-      host: {{ .mqtt.host }}
+      host: mosquitto.ix-mosquitto.svc.cluster.local
       # Optional: port (default: shown below)
-      port: 1883
+      port: {{ .detect.width }}
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
