@@ -60,4 +60,3 @@ data:
         snapshots:
           enabled: {{ .snapshots.enabled }}
 {{- end }}
-{{- end }}
