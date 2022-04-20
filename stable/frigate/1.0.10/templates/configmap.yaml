@@ -31,6 +31,7 @@ data:
 {{- range .Values.frigate.cameras }}
       {{ .name }}:
         objects:
+          # Optional: list of objects to track from labelmap.txt (default: shown below)
           track:
             {{- range .objects.track }}
               - {{ . }}
@@ -38,7 +39,7 @@ data:
         detect:
           width: {{ .detect.width }}
           height: {{ .detect.height }}
-
+        # Required: ffmpeg settings for the camera
         ffmpeg:
           # Required: A list of input streams for the camera. See documentation for more information.
           inputs:
