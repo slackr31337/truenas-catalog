@@ -7,7 +7,7 @@ metadata:
 data:
   config.yml: |
     mqtt:
-    {{- range .Values.frigate.cameras }}
+  {{- range .Values.frigate.cameras }}
       # Required: host name
       host: mosquitto.ix-mosquitto.svc.cluster.local
       # Optional: port (default: shown below)
