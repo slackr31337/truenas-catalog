@@ -11,7 +11,7 @@ data:
       host: publi.mqqt.com
       # Optional: port (default: shown below)
       {{- range .Values.frigate.cameras }}
-      port: {{ detect.width }}
+      port: {{ .detect.width }}
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
