@@ -9,9 +9,11 @@ data:
     mqtt:
       # Required: host name
 {{ .Values.frigateSetting.Server }}
-      host: {{ .Server | quote}}
-      port: 
+      host: {{ .Server | quote }}
+{{- end }}
 {{ .Values.frigateSetting.port }}
+      port: {{ .port | quote }}
+{{- end }}
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
@@ -60,6 +62,4 @@ data:
           best_image_timeout: 60
           snapshots:
             enabled: {{ .snapshots.enabled }}
-{{- end }}
-{{- end }}
 {{- end }}
