@@ -1,0 +1,3 @@
+mqtt:
+ host: publi.mqqt.com
+ port: 1883

@@ -8,11 +8,9 @@ data:
   config.yml: |
     mqtt:
       # Required: host name
-      host: publi.mqqt.com
+      host: {{ .Config.mqtt.host}}
       # Optional: port (default: shown below)
-      {{- range .Values.frigate.cameras }}
-      port: {{ .detect.width }}
-               {{- end }}
+      port: 1883
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
