@@ -7,8 +7,7 @@ metadata:
 data:
   config.yml: |
     mqtt:
-      # Required: host name
-      host: mosquitto.ix-mosquitto.svc.cluster.local
+      host: {{ .mqtt.host }}
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
@@ -29,9 +28,9 @@ data:
     ffmpeg:
       global_args: -hide_banner -loglevel debug
     cameras:
-{{- range .Values.frigate.mqtt }}
+{{- range .Values.frigate.cameras }}
       # Required: name of the camera
-      {{ .Values.frigate.mqtt.host }}:
+      {{ .name }}:
         objects:
           # Optional: list of objects to track from labelmap.txt (default: shown below)
           track:
