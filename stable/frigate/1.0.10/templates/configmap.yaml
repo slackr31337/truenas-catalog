@@ -6,4 +6,6 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   config.yml: |
-{{ .config.config | indent 4}}
+    mqtt:
+      host: {{ .config.mqtt.host }}
+      port: {{ .config.mqtt.port }}
