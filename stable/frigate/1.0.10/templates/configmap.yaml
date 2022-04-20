@@ -7,7 +7,7 @@ metadata:
 data:
   config.yml: |
     mqtt:
-      host: {{ .mqtt.host }}
+      host: mosquitto.ix-mosquitto.svc.cluster.local
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
