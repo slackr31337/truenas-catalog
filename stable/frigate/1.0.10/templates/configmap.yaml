@@ -8,5 +8,5 @@ data:
   config.yml: |
     mqtt:
       # Required: host name
-      host: {{- range .Values.frigateSetting.Server }}
+      host: {{ .Values.frigateSetting.Server }}
             {{- end }}
