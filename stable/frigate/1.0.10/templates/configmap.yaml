@@ -9,6 +9,7 @@ data:
     mqtt:
       # Required: host name
       host: {{ .Values.frigateSetting.Server }}
+            {{ end }}
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
