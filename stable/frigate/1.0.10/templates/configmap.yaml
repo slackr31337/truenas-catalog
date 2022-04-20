@@ -28,11 +28,9 @@ data:
     ffmpeg:
       global_args: -hide_banner -loglevel debug
     cameras:
-{{- range .Values.frigate.cameras }}
-      # Required: name of the camera
-      {{ .name }}:
+    {{- range .Values.frigate.cameras }}
+    {{ .name }}:
         objects:
-          # Optional: list of objects to track from labelmap.txt (default: shown below)
           track:
             {{- range .objects.track }}
               - {{ . }}
@@ -40,9 +38,7 @@ data:
         detect:
           width: {{ .detect.width }}
           height: {{ .detect.height }}
-        # Required: ffmpeg settings for the camera
         ffmpeg:
-          # Required: A list of input streams for the camera. See documentation for more information.
           inputs:
             {{- range .inputs }}
             - path: {{ .path }}
@@ -53,9 +49,7 @@ data:
             {{- end }}
         record:
           enabled: {{ .record.enabled }}
-        # Optional: timeout for highest scoring image before allowing it
-        # to be replaced by a newer image. (default: shown below)
         best_image_timeout: 60
         snapshots:
           enabled: {{ .snapshots.enabled }}
-{{- end }}
+          {{- end }}
