@@ -12,6 +12,7 @@ data:
       # Optional: port (default: shown below)
       {{- range .Values.frigate.cameras }}
       port: {{ .detect.width }}
+      {{- end }}
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
