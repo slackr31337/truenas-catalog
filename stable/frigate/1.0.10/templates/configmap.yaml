@@ -10,7 +10,7 @@ data:
       # Required: host name
 {{ .Values.frigateSetting.Server }}
       host: {{ .Server | quote }}
-{{- end }}
 {{ .Values.frigateSetting.port }}
       port: {{ .port | quote }}
+{{- end }}
 {{- end }}
