@@ -9,6 +9,5 @@ data:
     mqtt:
       # Required: host name
       host: {{ .Values.frigateSetting.Server }}
-            {{- end }}
       port: {{ .Values.frigateSetting.port }}
             {{- end }}
