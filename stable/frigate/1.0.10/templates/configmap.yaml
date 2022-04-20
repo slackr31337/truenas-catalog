@@ -4,6 +4,6 @@ metadata:
   name: {{ template "common.names.fullname" . }}-config
   labels:
     {{- include "common.labels" . | nindent 4 }}
-data:
-  config.yml: |
+#data:
+  #config.yml: |
 #{{ - include "questions.frigate-settings.values" . | }}
