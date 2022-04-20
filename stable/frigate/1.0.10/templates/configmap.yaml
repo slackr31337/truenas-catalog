@@ -28,4 +28,7 @@ data:
     ffmpeg:
       global_args: -hide_banner -loglevel debug
     cameras:
-      name: camera1
+{{- range .Values.frigate.cameras }}
+      # Required: name of the camera
+      {{ .name }}:
+{{- end }}
