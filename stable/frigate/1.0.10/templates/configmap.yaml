@@ -8,7 +8,7 @@ data:
   config.yml: |
     mqtt:
       # Required: host name
-      host: {{- range .Questions.frigate.server }}
+      host: {{- range .Questions.frigateSetting.Server }}
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
