@@ -10,7 +10,7 @@ data:
       # Required: host name
       host: mosquitto.ix-mosquitto.svc.cluster.local
       # Optional: port (default: shown below)
-      port: {{ .Values.detect.width }}
+      port: 1883
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
@@ -29,9 +29,9 @@ data:
     ffmpeg:
       global_args: -hide_banner -loglevel debug
     cameras:
-{{- range .Values.frigate.cameras }}
+{{- range .Values.frigate.mqtt }}
       # Required: name of the camera
-      {{ .name }}:
+      {{ .host }}:
         objects:
           # Optional: list of objects to track from labelmap.txt (default: shown below)
           track:
