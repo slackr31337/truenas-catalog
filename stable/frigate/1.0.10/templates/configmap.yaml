@@ -8,7 +8,9 @@ data:
   config.yml: |
     mqtt:
       # Required: host name
-      host: {{ .Config.mqtt }}
+      {{- range .Config.mqtt }}
+      host: {{ .host }}
+               {{ end }}
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
