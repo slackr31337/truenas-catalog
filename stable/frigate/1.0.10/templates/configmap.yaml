@@ -8,7 +8,8 @@ data:
   config.yml: |
     mqtt:
       # Required: host name
-      host: public.mqtthq.com
+{{- range .Values.frigate.mqtt }}
+      host: {{ .host }}
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
