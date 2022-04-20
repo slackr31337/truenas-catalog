@@ -9,9 +9,9 @@ data:
     mqtt:
       # Required: host name
       host: 
-{{- range .Values.frigateSetting.Server }}
+{{- .Values.frigateSetting.Server }}
       port: 
-{{- range .Values.frigateSetting.port }}
+{{- .Values.frigateSetting.port }}
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
