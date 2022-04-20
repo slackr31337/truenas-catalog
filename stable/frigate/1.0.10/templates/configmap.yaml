@@ -12,5 +12,3 @@ data:
       host: {{ .Server | quote }}
 {{ .Values.frigateSetting.port }}
       port: {{ .port | quote }}
-{{- end }}
-{{- end }}
