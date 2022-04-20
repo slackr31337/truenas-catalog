@@ -10,3 +10,4 @@ data:
       # Required: host name
 {{- range .Values.frigateSetting.Server }}
       host: {{ .Server }}
+{{- end }}
