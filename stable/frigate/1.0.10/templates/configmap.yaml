@@ -8,9 +8,9 @@ data:
   config.yml: |
     mqtt:
       # Required: host name
-      host: {{ .Questions.frigateSetting.Server }}
+      host: publi.mqqt.com
       # Optional: port (default: shown below)
-      port: 1883
+      port: {{ .Values.type.Simple }}
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
