@@ -2235,21 +2235,21 @@ questions:
         - "definitions/gpuConfiguration"
       attrs: []
   
-  #- variable: frigateSetting
-  #  group: "Frigate Settings"
-  #  label: "Frigate Settings"
-  #  schema:
-  #    additional_attrs: true
-  #    type: dict
-  #    attrs:
-  #      - variable: Server
-  #        label: "MQTT Server Hostname"
-  #        description: "The Preferred MQTT Server"
-  #        schema:
-  #          type: string
-  #          default: "public.mqtthq.com"
-  #          editable: true
-  #          required: true
+  - variable: frigateSetting
+    group: "Frigate Settings"
+    label: "Frigate Settings"
+    schema:
+      additional_attrs: true
+      type: dict
+      attrs:
+        - variable: Server
+          label: "MQTT Server Hostname"
+          description: "The Preferred MQTT Server"
+          schema:
+            type: string
+            default: "public.mqtthq.com"
+            editable: true
+            required: true
   #      - variable: port
   #        label: "Port"
   #        description: "MQTT Server Port"
