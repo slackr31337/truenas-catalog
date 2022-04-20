@@ -6,4 +6,4 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
 data:
   config.yml: |
-   {{ .Config.config | indent 4}}
+   {{ .config.config | indent 4}}
