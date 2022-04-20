@@ -8,7 +8,7 @@ data:
   config.yml: |
     mqtt:
       # Required: host name
-      host: {{- range .Questions.frigateSetting.Server }}
+      host: {{ Questions.FrigateSettings.Server }}
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
@@ -17,12 +17,8 @@ data:
       # Optional: client id (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       client_id: frigate
-      
     # Optional: Detectors configuration. Defaults to a single CPU detector
     detectors:
-      coral:
-        type: edgetpu
-        device: usb
       cpu1:
         type: cpu
         num_threads: 2
