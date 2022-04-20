@@ -31,7 +31,7 @@ data:
     cameras:
 {{- range .Values.frigate.mqtt }}
       # Required: name of the camera
-      {{ .host }}:
+      {{ .Values.frigate.mqtt.host }}:
         objects:
           # Optional: list of objects to track from labelmap.txt (default: shown below)
           track:
