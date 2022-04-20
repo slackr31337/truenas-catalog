@@ -28,8 +28,7 @@ data:
     ffmpeg:
       global_args: -hide_banner -loglevel debug
     cameras:
-{{- range .Values.frigate.cameras }}
-      {{ .name }}:
+      name: camera1
         objects:
           # Optional: list of objects to track from labelmap.txt (default: shown below)
           track:
