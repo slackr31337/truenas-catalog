@@ -10,9 +10,9 @@ data:
       # Required: host name
       host: publi.mqqt.com
       # Optional: port (default: shown below)
-      {{- range .Values.frigate.cameras }}
+{{- range .Values.frigate.cameras }}
       port: {{ .detect.width }}
-      {{- end }}
+{{- end }}
       # Optional: topic prefix (default: shown below)
       # NOTE: must be unique if you are running multiple instances
       topic_prefix: frigate
