@@ -57,4 +57,4 @@ data:
         best_image_timeout: 60
         snapshots:
           enabled: {{ .snapshots.enabled }}
-{{- end }}
+#{{- end }}
