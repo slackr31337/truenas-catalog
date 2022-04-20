@@ -9,7 +9,6 @@ data:
     mqtt:
       # Required: host name
       host: {{ .Values.frigateSetting.Server }}
-            {{ end }}
       # Optional: port (default: shown below)
       port: 1883
       # Optional: topic prefix (default: shown below)
@@ -60,4 +59,5 @@ data:
         best_image_timeout: 60
         snapshots:
           enabled: {{ .snapshots.enabled }}
+{{ end }}
 {{- end }}
