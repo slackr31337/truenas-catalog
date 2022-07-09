@@ -832,7 +832,7 @@ questions:
                 description: "Sets the persistence type, Anything other than PVC could break rollback!"
                 schema:
                   type: string
-                  default: "simpleHP"
+                  default: "simplePVC"
                   enum:
                     - value: "simplePVC"
                       description: "PVC (simple)"
@@ -2223,6 +2223,7 @@ questions:
                 description: "Path to the device on the host system"
                 schema:
                   type: path
+                  default: "/dev/bus/usb"
               - variable: mountPath
                 label: "Container Device Path"
                 description: "Path inside the container the device is mounted"
@@ -2247,60 +2248,14 @@ questions:
       additional_attrs: true
       type: dict
       attrs:
-        - variable: Server
-          label: "MQTT Server Hostname"
-          description: "The Preferred MQTT Server"
+        - variable: CONFIG_FILE
+          label: "Frigate config file"
+          description: "yml file to read in place of /config/config.yml"
           schema:
             type: string
-            default: "mosquitto.ix-mosquitto.svc.cluster.local"
+            default: "/media/frigate.yml"
             editable: true
             required: true
-        - variable: port
-          label: "Port"
-          description: "MQTT Server Port"
-          schema:
-            type: int
-            default: 1883
-            editable: true
-            required: true
-        - variable: pre
-          label: "Topic Prefix"
-          description: "Optional topic prefix, must be unique if you are running different instances"
-          schema:
-            type: string
-            default: frigate
-            editable: false
-            required: false
-        - variable: client-id
-          label: "Client ID"
-          description: "Optional client id, must be unique if you are running different instances"
-          schema:
-            type: string
-            default: frigate
-            editable: false
-            required: false
-        - variable: shm-size
-          label: "Shared Memory"
-          description: "Shared Memory Size"
-          schema:
-            type: int
-            default: 64
-            editable: true
-            required: true
-
-            subquestions:
-              - variable: detectors
-                description: "Select the Hardware to Use"
-                label: "Hardware Detector Type"
-                schema:
-                  type: string
-                  default: "cpu"
-                  required: true
-                  enum:
-                    - value: "tpu"
-                      description: "coral"
-                    - value: "cpu"
-                      description: "core"
 
   - variable: autoscaling
     group: "Advanced"
