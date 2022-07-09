@@ -816,7 +816,7 @@ questions:
       attrs:
         - variable: config
           label: "App Config Storage"
-          description: "Stores the Application Configuration."
+          description: "Stores the Application Configuration. (/config)"
           schema:
             additional_attrs: true
             type: dict
@@ -1118,8 +1118,6 @@ questions:
                                   label: "Value"
                                   schema:
                                     type: string
-
-
 
         - variable: cache
           label: "App Transcode cache"
