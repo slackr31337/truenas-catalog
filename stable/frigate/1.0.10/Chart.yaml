@@ -24,7 +24,7 @@ sources:
 - https://hub.docker.com/r/blakeblackshear/frigate
 - https://github.com/slackr31337/truenas-catalog
 type: application
-version: 1.0.2
+version: 1.0.10
 annotations:
   truecharts.org/catagories: |
     - nvr
