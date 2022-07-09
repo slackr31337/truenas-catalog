@@ -2247,7 +2247,7 @@ questions:
           description: "The Preferred MQTT Server"
           schema:
             type: string
-            default: "public.mqtthq.com"
+            default: "mosquitto.ix-mosquitto.svc.cluster.local"
             editable: true
             required: true
         - variable: port
