@@ -38,13 +38,25 @@ frigate:
     authentitcated: false
     username: mqtt_user
     password: password
+  ffmpeg:
+    #hwaccel_args: -hwaccel cuda
+    input_args: -threads 2 -vsync 0 -avoid_negative_ts make_zero -fflags nobuffer+igndts+genpts+discardcorrupt -flags low_delay -stimeout 5000000 -reorder_queue_size 10000 -use_wallclock_as_timestamps 1 -rtsp_transport tcp
+    output_args:
+      record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac
   birdseye:
     enabled: true
     mode: motion
+  live:
+    quality: 6
+  snapshots:
+    enabled: True
+    retain:
+      default: 30
   cameras:
-    - name: camera1
+    - name: driveway:
+      mqtt:
+        enabled: False
       objects:
-        # Optional: list of objects to track from labelmap.txt (default: shown below)
         track:
           - person
           - car
@@ -57,18 +69,21 @@ frigate:
       inputs:
         # Required: the path to the stream
         # NOTE: path may include environment variables, which must begin with 'FRIGATE_' and be referenced in {}
-        - path: rtsp://username:password@highres.url
+        - path: rtsp://{FRIGATE_URL_DRIVEWAY}:554/cam/realmonitor?channel=1&subtype=0
           # Required: list of roles for this stream. valid values are: detect,record,rtmp
           # NOTICE: In addition to assigning the record, and rtmp roles,
           # they must also be enabled in the camera config.
           roles:
             - record
-        - path: rtsp://username:password@lowres.url
+        - path: rtsp://{FRIGATE_URL_DRIVEWAY}:554/cam/realmonitor?channel=1&subtype=1
           roles:
             - detect
             - rtmp
       record:
         enabled: True
+        retain:
+           days: 0
+
       # Optional: timeout for highest scoring image before allowing it
       # to be replaced by a newer image. (default: shown below)
       best_image_timeout: 60
@@ -87,6 +102,3 @@ persistence:
   media:
     enabled: true
     mountPath: "/media/frigate"
-  config:
-    enabled: true
-    mountPath: "/config"
