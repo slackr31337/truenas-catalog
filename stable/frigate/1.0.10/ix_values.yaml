@@ -87,3 +87,6 @@ persistence:
   media:
     enabled: true
     mountPath: "/media/frigate"
+  config:
+    enabled: true
+    mountPath: "/config"
