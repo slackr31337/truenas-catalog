@@ -2280,6 +2280,7 @@ questions:
             default: 64
             editable: true
             required: true
+
             subquestions:
               - variable: detectors
                 description: "Select the Hardware to Use"
@@ -2293,24 +2294,6 @@ questions:
                       description: "coral"
                     - value: "cpu"
                       description: "core"
-              - variable: cameras
-                description: "Select the Camera to be Use"
-                label: "Camera Options"
-                schema:
-                  type: string
-                  default: "camera1"
-                  required: true
-                  enum:
-                    - value: "cam1"
-                      description: "cam1"
-                    - value: "cam2"
-                      description: "cam2"
-                    - value: "cam3"
-                      description: "cam3"
-                    - value: "cam4"
-                      description: "cam4"
-                    - value: "cam5"
-                      description: "cam5"
 
   - variable: autoscaling
     group: "Advanced"
