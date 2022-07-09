@@ -2307,32 +2307,12 @@ questions:
                       description: "cam1"
                     - value: "cam2"
                       description: "cam2"
-          schema:
-            type: string
-            default: "cpu"
-            enum:
-              - value: "edgetpu"
-              - value: "cpu"
-            editable: false
-            required: true
-        - variable: prefix-x
-          label: "Topic Prefix"
-          description: ""
-          schema:
-            type: list
-            default: frigate
-            editable: false
-            required: false
-
-        - variable: detectors
-          label: "Detectors Type"
-          options: [cpu, TPU]
-        - variable: shm
-          label: Shared-Memory
-        - variable: ffmpeg
-        - variable: objects
-          type: list  
-        
+                    - value: "cam3"
+                      description: "cam3"
+                    - value: "cam4"
+                      description: "cam4"
+                    - value: "cam5"
+                      description: "cam5"
 
   - variable: autoscaling
     group: "Advanced"
