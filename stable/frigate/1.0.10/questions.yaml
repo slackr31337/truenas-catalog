@@ -2274,64 +2274,64 @@ questions:
             default: frigate
             editable: false
             required: false
-  #      - variable: shm-size
-  #        label: "Shared Memory"
-  #        description: "Shared Memory Size"
-  #        schema:
-  #          type: int
-  #          default: 64
-  #          editable: true
-  #          required: true
-  #          subquestions:
-  #            - variable: detectors
-  #              description: "Select the Hardware to Use"
-  #              label: "Hardware Detector Type"
-  #              schema:
-  #                type: string
-  #                default: "cpu"
-  #                required: true
-  #                enum:
-  #                  - value: "tpu"
-  #                    description: "coral"
-  #                  - value: "cpu"
-  #                    description: "core"
-  #            - variable: cameras
-  #              description: "Select the Camera to be Use"
-  #              label: "Camera Options"
-  #              schema:
-  #                type: string
-  #                default: "camera1"
-  #                required: true
-  #                enum:
-  #                  - value: "cam1"
-  #                    description: "cam1"
-  #                  - value: "cam2"
-  #                    description: "cam2"
-          #schema:
-            #type: string
-            #default: "cpu"
-            #enum:
-            #  - value: "edgetpu"
-            #  - value: "cpu"
-            #editable: false
-            #required: true
-        #- variable: prefix-x
-        #  label: "Topic Prefix"
-        #  description: ""
-        #  schema:
-        #    type: list
-        #    default: frigate
-        #    editable: false
-        #    required: false
+        - variable: shm-size
+          label: "Shared Memory"
+          description: "Shared Memory Size"
+          schema:
+            type: int
+            default: 64
+            editable: true
+            required: true
+            subquestions:
+              - variable: detectors
+                description: "Select the Hardware to Use"
+                label: "Hardware Detector Type"
+                schema:
+                  type: string
+                  default: "cpu"
+                  required: true
+                  enum:
+                    - value: "tpu"
+                      description: "coral"
+                    - value: "cpu"
+                      description: "core"
+              - variable: cameras
+                description: "Select the Camera to be Use"
+                label: "Camera Options"
+                schema:
+                  type: string
+                  default: "camera1"
+                  required: true
+                  enum:
+                    - value: "cam1"
+                      description: "cam1"
+                    - value: "cam2"
+                      description: "cam2"
+          schema:
+            type: string
+            default: "cpu"
+            enum:
+              - value: "edgetpu"
+              - value: "cpu"
+            editable: false
+            required: true
+        - variable: prefix-x
+          label: "Topic Prefix"
+          description: ""
+          schema:
+            type: list
+            default: frigate
+            editable: false
+            required: false
 
-        #- variable: detectors
-        #  label: "Detectors Type"
-        #  options: [cpu, TPU]
-        #- variable: shm
-        #  label: Shared-Memory
-        #- variable: ffmpeg
-        #- variable: objects
-        #  type: list  
+        - variable: detectors
+          label: "Detectors Type"
+          options: [cpu, TPU]
+        - variable: shm
+          label: Shared-Memory
+        - variable: ffmpeg
+        - variable: objects
+          type: list  
         
 
   - variable: autoscaling
