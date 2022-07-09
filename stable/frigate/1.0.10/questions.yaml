@@ -922,6 +922,13 @@ questions:
                   show_if: [["type", "=", "pvc"]]
                   type: string
                   default: "SCALE-ZFS"
+              - variable: mountPath
+                label: "mountPath"
+                description: "Path inside the container the storage is mounted"
+                schema:
+                  type: string
+                  default: "/config"
+                  hidden: true
               - variable: accessMode
                 label: "(Advanced) Access Mode"
                 description: "Allow or disallow multiple PVC's writhing to the same PV"
