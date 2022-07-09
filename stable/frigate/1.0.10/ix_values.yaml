@@ -86,4 +86,4 @@ persistence:
     medium: "Memory"
   media:
     enabled: true
-    mountPath: "/media"
+    mountPath: "/media/frigate"
