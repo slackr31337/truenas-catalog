@@ -1,123 +1,137 @@
-# Include{groups}
+groups:
+  - name: "Configuration"
+    description: "Pterodactyl Panel application configuration"
+  - name: "Storage"
+    description: "Configure storage for pterodactyl"
+  - name: "Networking"
+    description: "Networking Configuration for pterodactyl"
+  - name: "Advanced DNS Settings"
+    description: "Configure DNS settings"
+  - name: "Resource Limits"
+    description: "Set CPU/memory limits for Kubernetes Pod"
+
 portals:
-  open:
-# Include{portalLink}
+  web_portal:
+    protocols:
+      - "http"
+    host:
+      - "$node_ip"
+    ports:
+      - "$variable-web_port"
+    path: "/"
+    
 questions:
-# Include{global}
-# Include{controller}
-# Include{controllerStatefullset}
-# Include{replicas}
-# Include{replica1}
-# Include{strategy}
-# Include{recreate}
-# Include{controllerExpert}
-# Include{controllerExpertExtraArgs}
-# Include{containerConfig}
-  - variable: mariadbDatabase
-    group: "App Configuration"
-    label: "Database Name"
-    schema:
-      type: string
-      default: "panel"
-      required: true
-  - variable: mariadbHost
-    group: "App Configuration"
-    label: "Database Server Hostname or IP Address"
-    schema:
-      type: string
-      default: "mariadb.ix-mariadb.svc.cluster.local"
-      required: true
-  - variable: mariadbPort
-    group: "App Configuration"
-    label: "Database Server Port"
+  - variable: web_port
+    label: "Web Port for pterodactyl"
+    group: Networking
     schema:
       type: int
-      default: 3306
+      min: 8000
+      max: 65535
+      default: 28080
       required: true
-  - variable: mariadbPassword
-    group: "App Configuration"
-    label: "Database Password"
+    
+  - variable: hostNetwork
+    label: "Enable Host Network"
+    group: "Networking"
     schema:
-      type: string
-      default: ""
-      required: true
-  - variable: redisHost
-    group: "App Configuration"
-    label: "Redis Server Hostname or IP Address"
+      type: boolean
+      default: false
+
+  - variable: dnsConfig
+    label: "DNS Configuration"
+    group: "Advanced DNS Settings"
     schema:
-      type: string
-      default: "redis.ix-redis.svc.cluster.local"
-      required: true
-  - variable: redisPassword
-    group: "App Configuration"
-    label: "Redis Server Password"
+      type: dict
+      attrs:
+        - variable: options
+          label: "DNS Options"
+          schema:
+            type: list
+            items:
+              - variable: optionsEntry
+                label: "Option Entry Configuration"
+                schema:
+                  type: dict
+                  attrs:
+                    - variable: name
+                      label: "Option Name"
+                      schema:
+                        type: string
+                        required: true
+                    - variable: value
+                      label: "Option Value"
+                      schema:
+                        type: string
+                        required: true
+                        
+  - variable: environmentVariables
+    label: "Pterodactyl environment"
+    group: "Configuration"
     schema:
-      type: string
-      default: ""
-      required: true
-  - variable: appURL
-    group: "App Configuration"
-    label: "Pterodactyl URL"
-    schema:
-      type: string
-      default: "http://panel.example.com"
-      required: true
-# Include{serviceRoot}
-# Include{serviceSelector}
-# Include{advancedPortTCP}
-# Include{serviceExpertRoot}
-            default: false
-# Include{serviceExpert}
-# Include{serviceList}
-# Include{persistenceRoot}
-# Include{persistenceBasic}
-# Include{persistenceAdvanced}
-# Include{persistenceList}
-# Include{ingressList}
-# Include{security}
-# Include{securityContextAdvancedRoot}
-              - variable: privileged
-                label: "Privileged mode"
+      type: list
+      default: []
+      items:
+        - variable: environmentVariable
+          label: "Environment Variable"
+          schema:
+            type: dict
+            attrs:
+              - variable: name
+                label: "Name"
                 schema:
-                  type: boolean
-                  default: false
-              - variable: readOnlyRootFilesystem
-                label: "ReadOnly Root Filesystem"
+                  type: string
+              - variable: value
+                label: "Value"
                 schema:
-                  type: boolean
-                  default: false
-              - variable: allowPrivilegeEscalation
-                label: "Allow Privilege Escalation"
-                schema:
-                  type: boolean
-                  default: false
-              - variable: runAsNonRoot
-                label: "runAsNonRoot"
-                schema:
-                  type: boolean
-                  default: true
-# Include{securityContextAdvanced}
-# Include{podSecurityContextRoot}
-        - variable: runAsUser
-          label: "runAsUser"
-          description: "The UserID of the user running the application"
+                  type: string
+                  
+        - variable: mariadbDatabase
+          group: "App Configuration"
+          label: "Database Name"
+          schema:
+            type: string
+            default: "panel"
+            required: true
+        - variable: mariadbHost
+          group: "App Configuration"
+          label: "Database Server Hostname or IP Address"
+          schema:
+            type: string
+            default: "mariadb.ix-mariadb.svc.cluster.local"
+            required: true
+        - variable: mariadbPort
+          group: "App Configuration"
+          label: "Database Server Port"
           schema:
             type: int
-            default: 568
-        - variable: runAsGroup
-          label: "runAsGroup"
-          description: "The groupID this App of the user running the application"
+            default: 3306
+            required: true
+        - variable: mariadbPassword
+          group: "App Configuration"
+          label: "Database Password"
           schema:
-            type: int
-            default: 0
-        - variable: fsGroup
-          label: "fsGroup"
-          description: "The group that should own ALL storage."
+            type: string
+            default: ""
+            required: true
+        - variable: redisHost
+          group: "App Configuration"
+          label: "Redis Server Hostname or IP Address"
           schema:
-            type: int
-            default: 568
-# Include{podSecurityContextAdvanced}
-# Include{resources}
-# Include{advanced}
-# Include{addons}
-# Include{documentation}
+            type: string
+            default: "redis.ix-redis.svc.cluster.local"
+            required: true
+        - variable: redisPassword
+          group: "App Configuration"
+          label: "Redis Server Password"
+          schema:
+            type: string
+            default: ""
+            required: true
+        - variable: appURL
+          group: "App Configuration"
+          label: "Pterodactyl URL"
+          schema:
+            type: string
+            default: "http://panel.example.com"
+            required: true
