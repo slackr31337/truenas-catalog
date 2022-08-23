@@ -11,9 +11,9 @@ podSecurityContext:
   runAsUser: 0
   runAsGroup: 0
   
-secretEnv:
-  DB_PASSWORD: "changeme"
-  REDIS_PASSWORD: "changeme"
+#secretEnv:
+#  DB_PASSWORD: "changeme"
+#  REDIS_PASSWORD: "changeme"
   
 env:
   APP_URL: "http://panel.example.com"
@@ -30,13 +30,6 @@ env:
   DB_PORT: 3306
   DB_DATABASE: "panel"
 
-service:
-  main:
-    ports:
-      main:
-        port: 28080
-        targetPort: 80
-
 persistence:
   app:
     enabled: true
@@ -48,5 +41,3 @@ persistence:
     enabled: true
     mountPath: "/app/storage/logs"
 
-portal:
-  enabled: true
