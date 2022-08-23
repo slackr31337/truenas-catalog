@@ -1,12 +1,10 @@
 groups:
   - description: "Pterodactyl Panel App configuration"
-    name: "Configuration"
+    name: "Pterodactyl Panel Configuration"
   - description: "Configure workload deployment"
     name: "Controller"
   - description: "Configure storage for Pterodactyl Panel App"
     name: "Storage"
-  - description: "Networking Configuration for Pterodactyl Panel App"
-    name: "Networking"
   - name: "Networking and Services"
     description: "Configure Network and Services for container"
   - description: "Configure DNS settings"
@@ -159,23 +157,7 @@ questions:
           variable: expert
       type: dict
     variable: controller
-  - group: "Networking"
-    label: "Web Port for Pterodactyl Panel"
-    schema:
-      default: 28080
-      max: 65535
-      min: 8000
-      required: true
-      type: int
-    variable: web_port
-  - description: "Configure timezone for Pterodactyl Panel"
-    group: "Configuration"
-    label: "Configure timezone"
-    schema:
-      $ref:
-        - definitions/timezone
-      type: string
-    variable: timezone
+
   - group: "Networking and Services"
     label: "Configure Service(s)"
     schema:
@@ -555,46 +537,8 @@ questions:
           variable: main
       type: dict
     variable: ingress
-  - description: "User ID of the storage volume being used (application will chown the storage volume path with specified UID)"
-    group: "Configuration"
-    label: "Storage User ID"
-    schema:
-      default: 568
-      max: 65535
-      min: 1
-      type: int
-    variable: ownerUID
-  - description: "Group ID of the storage volume being used (application will chown the storage volume path with specified GID)"
-    group: "Configuration"
-    label: "Storage Group ID"
-    schema:
-      default: 568
-      max: 65535
-      min: 1
-      type: int
-    variable: ownerGID
-  - group: "Configuration"
-    label: "Pterodactyl Panel Environment"
-    schema:
-      default: []
-      items:
-        - label: "Environment Variable"
-          schema:
-            attrs:
-              - label: Name
-                schema:
-                  type: string
-                variable: name
-              - label: Value
-                schema:
-                  type: string
-                variable: value
-            type: dict
-          variable: environmentVariable
-      type: list
-    variable: environmentVariables
+
   - group: "Storage"
-    label: "Pterodactyl Panel App Storage"
     schema:
       attrs:
         - label: "Storage Volume for Pterodactyl Panel App"
@@ -915,5 +859,19 @@ questions:
             required: true
             type: string
           variable: APP_URL
+        - label: "MariaDB Server hostname or IP address"
+          schema:
+            default: "mariadb.ix-mariadb.svc.cluster.local"
+            editable: true
+            required: true
+            type: string
+          variable: DB_HOST
+        - label: "Redis Server hostname or IP address"
+          schema:
+            default: "redis.ix-redis.svc.cluster.local"
+            editable: true
+            required: true
+            type: string
+          variable: REDIS_HOST
       type: dict
     variable: pterodactylConfig
