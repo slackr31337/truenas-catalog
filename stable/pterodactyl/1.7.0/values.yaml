@@ -46,5 +46,15 @@ redisPassword: "changeme"
 appURL: "http://panel.example.com"
 existingSecret: ""
 
+persistence:
+  app-content:
+    enabled: true
+    mountPath: "/app/var"
+  nginx:
+    enabled: true
+    mountPath: "/etc/nginx/http.d"
+  logs:
+    enabled: true
+    mountPath: "/app/storage/logs"
 portal:
   enabled: true
