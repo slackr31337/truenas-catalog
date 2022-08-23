@@ -3,5 +3,48 @@ image:
   pullPolicy: IfNotPresent
   tag: v1.10.1@sha256:c1bd630fd3832c179ca67b070a81a8fac0bdd1f9a63c314fcd4671e143debfc6
 
+secret:
+  credentials:
+    enabled: true
+    data:
+      mariadb-password: '{{ ( .Values.mariadbPassword | default "empty" ) }}'
+      redis-password: '{{ ( .Values.redisPassword | default "empty" ) }}'
+
+env:
+  DB_HOST: "{{ .Values.mariadbHost}}"
+  DB_PORT: "{{ .Values.mariadbPort}}"
+  DB_DATABASE: "{{ .Values.mariadbDatabase }}"
+  DB_PASSWORD:
+    secretKeyRef:
+      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
+      key: "mariadb-password"
+  REDIS_HOST: "{{ .Values.redisHost}}"
+  REDIS_PASSWORD:
+    secretKeyRef:
+      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
+      key: "redis-password"
+  CACHE_DRIVER: "redis"
+  SESSION_DRIVER: "redis"
+  QUEUE_DRIVER: "redis"
+  APP_ENV: "production"
+  APP_ENVIRONMENT_ONLY: "false"
+  APP_TIMEZONE: "UTC"
+  APP_SERVICE_AUTHOR: "slackr31337@gmail.com"
+  TRUSTED_PROXIES: "*"
+  
+      
+podSecurityContext:
+  runAsGroup: 0
+
+mariadbHost: "mariadb.ix-mariadb.svc.cluster.local"
+mariadbPort: "3306"
+mariadbUsername: "pterodactyl"
+mariadbPassword: "changeme"
+mariadbDatabase: "panel"
+redisHost: "redis.ix-redis.svc.cluster.local"
+redisPassword: "changeme"
+appURL: "http://panel.example.com"
+existingSecret: ""
+
 portal:
   enabled: true
