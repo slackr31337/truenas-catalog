@@ -1,20 +1,35 @@
 groups:
   - description: "Pterodactyl Panel App configuration"
-    name: Configuration
+    name: "Configuration"
   - description: "Configure workload deployment"
-    name: Controller
-  - description: "Pterodactyl Panel App configuration"
-    name: "Pterodactyl Config"
+    name: "Controller"
   - description: "Configure storage for Pterodactyl Panel App"
-    name: Storage
-  - description: "Ingress Configuration"
-    name: Ingress
+    name: "Storage"
   - description: "Networking Configuration for Pterodactyl Panel App"
-    name: Networking
+    name: "Networking"
+  - name: "Networking and Services"
+    description: "Configure Network and Services for container"
   - description: "Configure DNS settings"
     name: "Advanced DNS Settings"
   - description: "Set CPU/memory limits for Kubernetes Pod"
     name: "Resource Limits"
+  - name: "Storage and Persistence"
+    description: "Persist and share data that is separate from the container"
+  - name: "Ingress"
+    description: "Ingress Configuration"
+  - name: "Security and Permissions"
+    description: "Configure security context and permissions"
+  - name: "Resources and Devices"
+    description: "Specify resources/devices to be allocated to workload"
+  - name: "Middlewares"
+    description: "Traefik Middlewares"
+  - name: "Metrics"
+    description: "Metrics"
+  - name: "Addons"
+    description: "Addon Configuration"
+  - name: "Advanced"
+    description: "Advanced Configuration"
+
 portals:
   open:
     host:
