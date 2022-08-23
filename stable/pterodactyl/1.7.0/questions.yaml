@@ -38,8 +38,9 @@ portals:
       - $kubernetes-resource_configmap_portal_port
     protocols:
       - $kubernetes-resource_configmap_portal_protocol
+
 questions:
-  - group: Controller
+  - group: "Controller"
     label: "global settings"
     schema:
       attrs:
@@ -52,7 +53,7 @@ questions:
       hidden: true
       type: dict
     variable: global
-  - group: Controller
+  - group: "Controller"
     label: ""
     schema:
       additional_attrs: true
@@ -158,7 +159,7 @@ questions:
           variable: expert
       type: dict
     variable: controller
-  - group: Networking
+  - group: "Networking"
     label: "Web Port for Pterodactyl Panel"
     schema:
       default: 28080
@@ -168,7 +169,7 @@ questions:
       type: int
     variable: web_port
   - description: "Configure timezone for Pterodactyl Panel"
-    group: Configuration
+    group: "Configuration"
     label: "Configure timezone"
     schema:
       $ref:
@@ -384,7 +385,7 @@ questions:
           variable: dnsConfig
       type: dict
     variable: service
-  - group: Ingress
+  - group: "Ingress"
     label: ""
     schema:
       additional_attrs: true
@@ -555,7 +556,7 @@ questions:
       type: dict
     variable: ingress
   - description: "User ID of the storage volume being used (application will chown the storage volume path with specified UID)"
-    group: Configuration
+    group: "Configuration"
     label: "Storage User ID"
     schema:
       default: 568
@@ -564,7 +565,7 @@ questions:
       type: int
     variable: ownerUID
   - description: "Group ID of the storage volume being used (application will chown the storage volume path with specified GID)"
-    group: Configuration
+    group: "Configuration"
     label: "Storage Group ID"
     schema:
       default: 568
@@ -572,7 +573,7 @@ questions:
       min: 1
       type: int
     variable: ownerGID
-  - group: Configuration
+  - group: "Configuration"
     label: "Pterodactyl Panel Environment"
     schema:
       default: []
@@ -592,7 +593,7 @@ questions:
           variable: environmentVariable
       type: list
     variable: environmentVariables
-  - group: Storage
+  - group: "Storage"
     label: "Pterodactyl Panel App Storage"
     schema:
       attrs:
@@ -712,7 +713,7 @@ questions:
           variable: logs
       type: dict
     variable: appVolumeMounts
-  - group: Storage
+  - group: "Storage"
     label: "Extra Host Path Volumes"
     schema:
       items:
@@ -766,6 +767,7 @@ questions:
       type: string
       valid_chars: "^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
     variable: memLimit
+
   - group: "Security and Permissions"
     label: "Container Security Settings"
     schema:
@@ -793,6 +795,7 @@ questions:
           variable: editsecurity
       type: dict
     variable: security
+
   - group: "Security and Permissions"
     label: "Show Advanced Security Settings"
     schema:
@@ -853,6 +856,7 @@ questions:
           variable: securityContext
       type: boolean
     variable: advancedSecurity
+
   - group: "Security and Permissions"
     label: "Pod Security Context"
     schema:
@@ -898,7 +902,8 @@ questions:
           variable: supplementalGroups
       type: dict
     variable: podSecurityContext
-  - group: "Pterodactyl Config"
+
+  - group: "Configuration"
     label: "Pterodactyl Panel Config"
     schema:
       additional_attrs: true
