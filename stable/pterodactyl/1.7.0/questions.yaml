@@ -71,21 +71,7 @@ questions:
     schema:
       type: list
       default: []
-      items:
-        - variable: environmentVariable
-          label: "Environment Variable"
-          schema:
-            type: dict
-            attrs:
-              - variable: name
-                label: "Name"
-                schema:
-                  type: string
-              - variable: value
-                label: "Value"
-                schema:
-                  type: string
-                  
+      items: 
         - variable: mariadbDatabase
           group: "App Configuration"
           label: "Database Name"
