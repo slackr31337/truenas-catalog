@@ -40,16 +40,6 @@ env:
       name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
       key: "redis-password"
 
-mariadbHost: "mariadb.ix-mariadb.svc.cluster.local"
-mariadbPort: "3306"
-mariadbUsername: "pterodactyl"
-mariadbPassword: "changeme"
-mariadbDatabase: "panel"
-redisHost: "redis.ix-redis.svc.cluster.local"
-redisPassword: "changeme"
-appURL: "http://panel.example.com"
-existingSecret: ""
-
 service:
   main:
     ports:
