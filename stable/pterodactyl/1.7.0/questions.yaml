@@ -12,6 +12,33 @@ questions:
 # Include{recreate}
 # Include{controllerExpert}
 # Include{controllerExpertExtraArgs}
+  - variable: secretEnv
+    group: "Container Configuration"
+    label: "Image Secrets"
+    schema:
+      additional_attrs: true
+      type: dict
+      attrs:
+        - variable: DB_PASSWORD
+          label: "DB_PASSWORD"
+          description: "Database password for pterodactyl user"
+          schema:
+            type: string
+            private: true
+            default: ""
+  - variable: env
+    group: "Container Configuration"
+    label: "Image Environment"
+    schema:
+      additional_attrs: true
+      type: dict
+      attrs:
+        - variable: APP_URL
+          label: "URL to Pterodactyl Panel"
+          schema:
+            type: string
+            default: ""
+            
 # Include{containerConfig}
 # Include{serviceRoot}
         - variable: main
