@@ -367,6 +367,7 @@ questions:
           variable: dnsConfig
       type: dict
     variable: service
+
   - group: "Ingress"
     label: ""
     schema:
@@ -539,6 +540,7 @@ questions:
     variable: ingress
 
   - group: "Storage"
+    label: ""
     schema:
       attrs:
         - label: "Storage Volume for Pterodactyl Panel App"
@@ -847,7 +849,7 @@ questions:
       type: dict
     variable: podSecurityContext
 
-  - group: "Configuration"
+  - group: "Pterodactyl Panel Configuration"
     label: "Pterodactyl Panel Config"
     schema:
       additional_attrs: true
