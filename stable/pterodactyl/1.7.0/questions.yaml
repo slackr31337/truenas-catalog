@@ -1,4 +1,7 @@
 # Include{groups}
+portals:
+  open:
+# Include{portalLink}
 questions:
 # Include{global}
 # Include{controller}
@@ -93,27 +96,6 @@ questions:
 # Include{serviceExpert}
 # Include{serviceList}
 # Include{persistenceRoot}
-        - variable: app-content
-          label: "App Content Storage"
-          description: "Stores the Application Content."
-          schema:
-            additional_attrs: true
-            type: dict
-            attrs:
-        - variable: nginx
-          label: "Nginx Storage"
-          description: "Stores the Nginx Configuration."
-          schema:
-            additional_attrs: true
-            type: dict
-            attrs:
-        - variable: logs
-          label: "App Logs Storage"
-          description: "Stores the Application Logs."
-          schema:
-            additional_attrs: true
-            type: dict
-            attrs:
 # Include{persistenceBasic}
 # Include{persistenceAdvanced}
 # Include{persistenceList}
