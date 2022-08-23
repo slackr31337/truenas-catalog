@@ -4,7 +4,7 @@ Pterodactyl® is a free, open-source game server management panel built with PHP
 
 This Helm Chart installs [Pterodactyl Panel](https://pterodactyl.io/) on to Kubernetes.
 
-**Homepage:** <https://github.com/blakeblackshear/blakeshome-charts/tree/master/charts/frigate>
+**Homepage:** <https://pterodactyl.io/>
 
 ## Install
 
