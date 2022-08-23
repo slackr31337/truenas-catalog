@@ -23,7 +23,6 @@ sources:
 - https://github.com/pterodactyl/panel
 - https://ghcr.io/pterodactyl/panel
 - https://github.com/slackr31337/truenas-catalog
-
 annotations:
   truecharts.org/catagories: |
     - games
