@@ -1,125 +1,264 @@
-# Include{groups}
-portals: {}
+groups:
+  - name: "Configuration"
+    description: "Pterodactyl Panel App configuration"
+  - name: "Storage"
+    description: "Configure storage for Pterodactyl Panel App"
+  - name: "Networking"
+    description: "Networking Configuration for Pterodactyl Panel App"
+  - name: "Advanced DNS Settings"
+    description: "Configure DNS settings"
+  - name: "Resource Limits"
+    description: "Set CPU/memory limits for Kubernetes Pod"
+
+portals:
+  web_portal:
+    protocols:
+      - "http"
+    host:
+      - "$node_ip"
+    ports:
+      - "$variable-web_port"
+    path: "/"
+
 questions:
-# Include{global}
-# Include{controller}
-# Include{controllerDeployment}
-# Include{replicas}
-# Include{replica1}
-# Include{strategy}
-# Include{recreate}
-# Include{controllerExpert}
-# Include{controllerExpertExtraArgs}
-  - variable: secretEnv
-    group: "Container Configuration"
-    label: "Image Secrets"
+  - variable: web_port
+    label: "Web Port for Pterodactyl Panel"
+    group: Networking
     schema:
-      additional_attrs: true
+      type: int
+      min: 8000
+      max: 65535
+      default: 28080
+      required: true
+
+  - variable: timezone
+    label: "Configure timezone"
+    group: "Configuration"
+    description: "Configure timezone for Pterodactyl Panel"
+    schema:
+      type: string
+      $ref:
+        - "definitions/timezone"
+
+  - variable: hostNetwork
+    label: "Enable Host Network"
+    group: "Networking"
+    schema:
+      type: boolean
+      default: false
+
+  - variable: dnsConfig
+    label: "DNS Configuration"
+    group: "Advanced DNS Settings"
+    schema:
       type: dict
       attrs:
-        - variable: DB_PASSWORD
-          label: "DB_PASSWORD"
-          description: "Password used to connect to Mariadb server"
+        - variable: options
+          label: "DNS Options"
           schema:
-            type: string
-            default: ""
-            required: true
-        - variable: REDIS_PASSWORD
-          label: "REDIS_PASSWORD"
-          description: "Password used to connect to redis server"
-          schema:
-            type: string
-            default: ""
-            required: true
-  - variable: env
-    group: "Container Configuration"
-    label: "Image Environment"
+            type: list
+            items:
+              - variable: optionsEntry
+                label: "Option Entry Configuration"
+                schema:
+                  type: dict
+                  attrs:
+                    - variable: name
+                      label: "Option Name"
+                      schema:
+                        type: string
+                        required: true
+                    - variable: value
+                      label: "Option Value"
+                      schema:
+                        type: string
+                        required: true
+
+  - variable: ownerUID
+    label: "Storage User ID"
+    description: "User ID of the storage volume being used (application will chown the storage volume path with specified UID)"
+    group: Configuration
     schema:
-      additional_attrs: true
+      type: int
+      default: 568
+      min: 1
+      max: 65535
+
+  - variable: ownerGID
+    label: "Storage Group ID"
+    description: "Group ID of the storage volume being used (application will chown the storage volume path with specified GID)"
+    group: Configuration
+    schema:
+      type: int
+      default: 568
+      min: 1
+      max: 65535
+
+  - variable: environmentVariables
+    label: "Pterodactyl Panel Environment"
+    group: "Configuration"
+    schema:
+      type: list
+      default: []
+      items:
+        - variable: environmentVariable
+          label: "Environment Variable"
+          schema:
+            type: dict
+            attrs:
+              - variable: name
+                label: "Name"
+                schema:
+                  type: string
+              - variable: value
+                label: "Value"
+                schema:
+                  type: string
+
+  - variable: appVolumeMounts
+    label: "Pterodactyl Panel App Storage"
+    group: "Storage"
+    schema:
       type: dict
       attrs:
-        - variable: DB_DATABASE
-          label: "DB_DATABASE"
-          description: "Database name"
+        - variable: config
+          label: "Storage Volume for Pterodactyl Panel App"
           schema:
-            type: string
-            default: "panel"
-            required: true
-        - variable: DB_HOST
-          label: "DB_HOST"
-          description: "Mariadb server hostname or IP address"
-          schema:
-            type: string
-            default: "mariadb.ix-mariadb.svc.cluster.local"
-        - variable: DB_PORT
-          label: "DB_PORT"
-          description: "Port used to connect to the Mariadb server"
-          schema:
-            type: int
-            default: 3306
-        - variable: REDIS_HOST
-          label: "REDIS_HOST"
-          description: "Redis server hostname or IP address"
-          schema:
-            type: str
-            default: "redis.ix-redis.svc.cluster.local"
-        - variable: APP_URL
-          label: "APP_URL"
-          description: "Pterodactyl URL"
-          schema:
-            type: string
-            default: "https://pterodactyl.example.com"
-# Include{containerConfig}
-# Include{serviceExpertRoot}
-            default: false
-# Include{serviceExpert}
-# Include{serviceList}
-# Include{persistenceList}
-# Include{ingressList}
-# Include{security}
-# Include{securityContextAdvancedRoot}
-              - variable: privileged
-                label: "Privileged mode"
+            type: dict
+            attrs:
+              - variable: datasetName
+                label: "Pterodactyl Panel App Storage Volume Dataset Name"
+                schema:
+                  type: string
+                  hidden: true
+                  $ref:
+                    - "normalize/ixVolume"
+                  show_if: [["hostPathEnabled", "=", false]]
+                  default: "ix-config"
+                  editable: false
+              - variable: mountPath
+                label: "Configuration Storage Mount Path"
+                description: "Path where the volume will be mounted inside the pod"
+                schema:
+                  type: path
+                  hidden: true
+                  editable: true
+                  default: "/app/var"
+              - variable: hostPathEnabled
+                label: "Enable Custom Host Path for Pterodactyl Panel App Storage Volume"
                 schema:
                   type: boolean
                   default: false
-              - variable: readOnlyRootFilesystem
-                label: "ReadOnly Root Filesystem"
+                  show_subquestions_if: true
+                  subquestions:
+                    - variable: hostPath
+                      label: "Host Path for Pterodactyl Panel App Storage Volume"
+                      schema:
+                        type: hostpath
+                        required: true
+        - variable: nginx
+          label: "Storage Volume for Nginx"
+          schema:
+            type: dict
+            attrs:
+              - variable: datasetName
+                label: "Nginx Storage Volume Dataset Name"
                 schema:
-                  type: boolean
-                  default: true
-              - variable: allowPrivilegeEscalation
-                label: "Allow Privilege Escalation"
+                  type: string
+                  hidden: true
+                  $ref:
+                    - "normalize/ixVolume"
+                  show_if: [["hostPathEnabled", "=", false]]
+                  default: "ix-nginx"
+                  editable: false
+              - variable: mountPath
+                label: "Media Storage Mount Path"
+                description: "Path where the volume will be mounted inside the pod"
+                schema:
+                  type: path
+                  hidden: true
+                  editable: true
+                  default: "/etc/nginx/http.d"
+              - variable: hostPathEnabled
+                label: "Enable Custom Host Path for Nginx Storage Volume"
                 schema:
                   type: boolean
                   default: false
-              - variable: runAsNonRoot
-                label: "runAsNonRoot"
+                  show_subquestions_if: true
+                  subquestions:
+                    - variable: hostPath
+                      label: "Host Path for Nginx Storage Volume"
+                      schema:
+                        type: hostpath
+                        required: true
+
+        - variable: logs
+          label: "Logs Volume"
+          schema:
+            type: dict
+            attrs:
+              - variable: datasetName
+                label: "Logs Volume Name"
                 schema:
-                  type: boolean
-                  default: true
-# Include{securityContextAdvanced}
-# Include{podSecurityContextRoot}
-        - variable: runAsUser
-          label: "runAsUser"
-          description: "The UserID of the user running the application"
+                  type: string
+                  $ref:
+                    - "normalize/ixVolume"
+                  default: "ix-app_logs"
+                  editable: false
+              - variable: mountPath
+                label: "Logs Mount Path"
+                description: "Path where the volume will be mounted inside the pod"
+                schema:
+                  type: path
+                  editable: false
+                  default: "/app/storage/logs"
+
+  - variable: extraAppVolumeMounts
+    label: "Extra Host Path Volumes"
+    group: "Storage"
+    schema:
+      type: list
+      items:
+        - variable: extraAppVolume
+          label: "Host Path Volume"
+          description: "Add an extra host path volume for Home Assistant application"
           schema:
-            type: int
-            default: 568
-        - variable: runAsGroup
-          label: "runAsGroup"
-          description: "The groupID this App of the user running the application"
-          schema:
-            type: int
-            default: 568
-        - variable: fsGroup
-          label: "fsGroup"
-          description: "The group that should own ALL storage."
-          schema:
-            type: int
-            default: 568
-# Include{podSecurityContextAdvanced}
-# Include{resources}
-# Include{advanced}
-# Include{addons}
-# Include{documentation}
+            type: dict
+            attrs:
+              - variable: mountPath
+                label: "Mount Path in Pod"
+                description: "Path where the volume will be mounted inside the pod"
+                schema:
+                  type: path
+                  required: true
+              - variable: hostPath
+                label: "Host Path"
+                description: "Host path"
+                schema:
+                  type: hostpath
+                  required: true
+
+  - variable: enableResourceLimits
+    label: "Enable Pod resource limits"
+    group: "Resource Limits"
+    schema:
+      type: boolean
+      default: false
+  - variable: cpuLimit
+    label: "CPU Limit"
+    description: "CPU resource limit allow  plain integer values with suffix m(milli) e.g 1000m, 100."
+    group: "Resource Limits"
+    schema:
+      type: string
+      show_if: [["enableResourceLimits", "=", true]]
+      valid_chars: "^\\d+(?:\\.\\d+(?!.*m$)|m?$)"
+      default: "4000m"
+  - variable: memLimit
+    label: "Memory Limit"
+    group: "Resource Limits"
+    description: "Memory limits is specified by number of bytes. Followed by quantity suffix like E,P,T,G,M,k and Ei,Pi,Ti,Mi,Gi,Ki can also be used. e.g 129e6, 129M,  128974848000m, 123Mi"
+    schema:
+      type: string
+      show_if: [["enableResourceLimits", "=", true]]
+      valid_chars: "^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$"
+      default: "8Gi"
