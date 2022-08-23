@@ -11,34 +11,24 @@ podSecurityContext:
   runAsUser: 0
   runAsGroup: 0
   
-secret:
-  credentials:
-    enabled: true
-    data:
-      mariadb-password: '{{ ( .Values.mariadbPassword | default "empty" ) }}'
-      redis-password: '{{ ( .Values.redisPassword | default "empty" ) }}'
-
+secretEnv:
+  DB_PASSWORD: "changeme"
+  REDIS_PASSWORD: "changeme"
+  
 env:
-  CACHE_DRIVER: "redis"
-  SESSION_DRIVER: "redis"
-  QUEUE_DRIVER: "redis"
+  APP_URL: "http://panel.example.com"
   APP_ENV: "production"
   APP_ENVIRONMENT_ONLY: "false"
   APP_TIMEZONE: "UTC"
   APP_SERVICE_AUTHOR: "slackr31337@gmail.com"
   TRUSTED_PROXIES: "*"
-  DB_HOST: '{{ .Values.mariadbHost | default "mariadb.ix-mariadb.svc.cluster.local"}}'
-  DB_PORT: '{{ .Values.mariadbPort | default 3306 }}'
-  DB_DATABASE: "{{ .Values.mariadbDatabase }}"
-  DB_PASSWORD:
-    secretKeyRef:
-      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
-      key: "mariadb-password"
-  REDIS_HOST: '{{ .Values.redisHost | default "redis.ix-redis.svc.cluster.local" }}'
-  REDIS_PASSWORD:
-    secretKeyRef:
-      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
-      key: "redis-password"
+  CACHE_DRIVER: "redis"
+  SESSION_DRIVER: "redis"
+  QUEUE_DRIVER: "redis"
+  REDIS_HOST: "redis.ix-redis.svc.cluster.local"
+  DB_HOST: "mariadb.ix-mariadb.svc.cluster.local"
+  DB_PORT: 3306
+  DB_DATABASE: "panel"
 
 service:
   main:
