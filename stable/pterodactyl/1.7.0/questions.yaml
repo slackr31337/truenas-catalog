@@ -236,7 +236,7 @@ questions:
       items:
         - variable: extraAppVolume
           label: "Host Path Volume"
-          description: "Add an extra host path volume for Home Assistant application"
+          description: "Add an extra host path volume for Pterodactyl application"
           schema:
             type: dict
             attrs:
