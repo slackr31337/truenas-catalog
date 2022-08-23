@@ -172,7 +172,7 @@ questions:
                   default: "ix-nginx"
                   editable: false
               - variable: mountPath
-                label: "Media Storage Mount Path"
+                label: "Nginx Storage Mount Path"
                 description: "Path where the volume will be mounted inside the pod"
                 schema:
                   type: path
@@ -193,25 +193,40 @@ questions:
                         required: true
 
         - variable: logs
-          label: "Logs Volume"
+          label: "Storage Volume for App Logs"
           schema:
             type: dict
             attrs:
               - variable: datasetName
-                label: "Logs Volume Name"
+                label: "Logs Storage Volume Dataset Name"
                 schema:
                   type: string
+                  hidden: true
                   $ref:
                     - "normalize/ixVolume"
+                  show_if: [["hostPathEnabled", "=", false]]
                   default: "ix-app_logs"
                   editable: false
               - variable: mountPath
-                label: "Logs Mount Path"
+                label: "Logs Storage Mount Path"
                 description: "Path where the volume will be mounted inside the pod"
                 schema:
                   type: path
-                  editable: false
+                  hidden: true
+                  editable: true
                   default: "/app/storage/logs"
+              - variable: hostPathEnabled
+                label: "Enable Custom Host Path for Logs Storage Volume"
+                schema:
+                  type: boolean
+                  default: false
+                  show_subquestions_if: true
+                  subquestions:
+                    - variable: hostPath
+                      label: "Host Path for Logs Storage Volume"
+                      schema:
+                        type: hostpath
+                        required: true
 
   - variable: extraAppVolumeMounts
     label: "Extra Host Path Volumes"
