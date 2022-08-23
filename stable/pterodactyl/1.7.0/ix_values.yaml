@@ -1,15 +1,7 @@
 image:
-  repository: ghcr.io/pterodactyl/panel
   pullPolicy: IfNotPresent
-  tag: v1.10.1@sha256:c1bd630fd3832c179ca67b070a81a8fac0bdd1f9a63c314fcd4671e143debfc6
-
-securityContext:
-  readOnlyRootFilesystem: false
-  runAsNonRoot: false
-
-podSecurityContext:
-  runAsUser: 0
-  runAsGroup: 0
+  repository: ghcr.io/pterodactyl/panel
+  tag: v1.10.1
   
 #secretEnv:
 #  DB_PASSWORD: "changeme"
