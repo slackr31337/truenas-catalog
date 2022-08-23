@@ -3,6 +3,14 @@ image:
   pullPolicy: IfNotPresent
   tag: v1.10.1@sha256:c1bd630fd3832c179ca67b070a81a8fac0bdd1f9a63c314fcd4671e143debfc6
 
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+  
 secret:
   credentials:
     enabled: true
@@ -11,18 +19,6 @@ secret:
       redis-password: '{{ ( .Values.redisPassword | default "empty" ) }}'
 
 env:
-  DB_HOST: "{{ .Values.mariadbHost}}"
-  DB_PORT: "{{ .Values.mariadbPort}}"
-  DB_DATABASE: "{{ .Values.mariadbDatabase }}"
-  DB_PASSWORD:
-    secretKeyRef:
-      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
-      key: "mariadb-password"
-  REDIS_HOST: "{{ .Values.redisHost}}"
-  REDIS_PASSWORD:
-    secretKeyRef:
-      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
-      key: "redis-password"
   CACHE_DRIVER: "redis"
   SESSION_DRIVER: "redis"
   QUEUE_DRIVER: "redis"
@@ -31,10 +27,18 @@ env:
   APP_TIMEZONE: "UTC"
   APP_SERVICE_AUTHOR: "slackr31337@gmail.com"
   TRUSTED_PROXIES: "*"
-  
-      
-podSecurityContext:
-  runAsGroup: 0
+  DB_HOST: '{{ .Values.mariadbHost | default "mariadb.ix-mariadb.svc.cluster.local"}}'
+  DB_PORT: '{{ .Values.mariadbPort | default 3306 }}'
+  DB_DATABASE: "{{ .Values.mariadbDatabase }}"
+  DB_PASSWORD:
+    secretKeyRef:
+      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
+      key: "mariadb-password"
+  REDIS_HOST: '{{ .Values.redisHost | default "redis.ix-redis.svc.cluster.local" }}'
+  REDIS_PASSWORD:
+    secretKeyRef:
+      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
+      key: "redis-password"
 
 mariadbHost: "mariadb.ix-mariadb.svc.cluster.local"
 mariadbPort: "3306"
@@ -46,8 +50,15 @@ redisPassword: "changeme"
 appURL: "http://panel.example.com"
 existingSecret: ""
 
+service:
+  main:
+    ports:
+      main:
+        port: 28080
+        targetPort: 80
+
 persistence:
-  app-content:
+  app:
     enabled: true
     mountPath: "/app/var"
   nginx:
@@ -56,5 +67,6 @@ persistence:
   logs:
     enabled: true
     mountPath: "/app/storage/logs"
+
 portal:
   enabled: true
