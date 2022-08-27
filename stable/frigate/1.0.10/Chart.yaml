@@ -7,7 +7,7 @@ dependencies:
 deprecated: false
 description: NVR With Realtime Object Detection for IP Cameras
 home: https://github.com/truecharts/apps/tree/master/charts/incubator/frigate
-icon: https://truecharts.org/_static/img/appicons/frigate.png
+icon: https://raw.githubusercontent.com/blakeblackshear/frigate/master/docs/static/img/frigate.png
 keywords:
 - encode
 - nvr
