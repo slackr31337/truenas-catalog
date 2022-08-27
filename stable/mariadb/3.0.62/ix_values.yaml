@@ -56,7 +56,8 @@ env:
 podSecurityContext:
   runAsGroup: 0
 
-volumeClaimTemplates:
+#volumeClaimTemplates:
+persistence:
   data:
     enabled: true
     mountPath: "/bitnami/mariadb"
