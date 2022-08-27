@@ -27,6 +27,14 @@ groups:
     description: Advanced Configuration
   - name: Documentation
     description: Documentation
+portals:
+  open:
+    protocols:
+      - "$kubernetes-resource_configmap_portal_protocol"
+    host:
+      - "$kubernetes-resource_configmap_portal_host"
+    ports:
+      - "$kubernetes-resource_configmap_portal_port"
 questions:
   - variable: global
     label: Global Settings
@@ -68,7 +76,7 @@ questions:
                       description: Statefulset
                     - value: daemonset
                       description: Daemonset
-                  default: statefulset
+                  default: deployment
               - variable: replicas
                 description: Number of desired pod replicas
                 label: Desired Replicas
@@ -156,6 +164,186 @@ questions:
                 label: Arg
                 schema:
                   type: string
+  - variable: env
+    group: "Container Configuration"
+    label: "Image Environment"
+    schema:
+      additional_attrs: true
+      type: dict
+      attrs:
+        - variable: VERSION
+          label: "Minecraft version"
+          description: "Options: LATEST, PREVIOUS or version number"
+          schema:
+            type: string
+            required: true
+            default: "LATEST"
+        - variable: SERVER_NAME
+          label: "Server Name"
+          schema:
+            type: string
+            required: true
+            default: "Dedicated Server on TrueNAS Scale!"
+        - variable: GAMEMODE
+          label: "Default gamemode"
+          schema:
+            type: string
+            required: true
+            default: "survival"
+            enum:
+              - value: "survival"
+                description: "Survival"
+              - value: "creative"
+                description: "Creative"
+              - value: "adventure"
+                description: "Adventure"
+              - value: "spectator"
+                description: "Spectator"
+        - variable: DIFFICULTY
+          label: "Difficulty"
+          schema:
+            type: string
+            required: true
+            default: "easy"
+            enum:
+              - value: "peaceful"
+                description: "Peaceful"
+              - value: "easy"
+                description: "Easy"
+              - value: "normal"
+                description: "Normal"
+              - value: "hard"
+                description: "Hard"
+        - variable: LEVEL_TYPE
+          label: "Level type"
+          schema:
+            type: string
+            required: true
+            default: "DEFAULT"
+            enum:
+              - value: "DEFAULT"
+                description: "Default"
+              - value: "FLAT"
+                description: "Flat"
+              - value: "LEGACY"
+                description: "Legacy"
+        - variable: ALLOW_CHEATS
+          label: "Enable/Disable Cheats"
+          schema:
+            type: boolean
+            default: false
+        - variable: MAX_PLAYERS
+          label: "Max players"
+          schema:
+            type: int
+            min: 1
+            required: true
+            default: 10
+        - variable: ONLINE_MODE
+          label: "Online mode"
+          schema:
+            type: boolean
+            default: true
+        - variable: WHITE_LIST
+          label: "White list"
+          schema:
+            type: boolean
+            default: false
+        - variable: VIEW_DISTANCE
+          label: "View distance"
+          schema:
+            type: int
+            min: 1
+            required: true
+            default: 32
+        - variable: TICK_DISTANCE
+          label: "Tick distance"
+          schema:
+            type: int
+            min: 1
+            required: true
+            default: 4
+        - variable: PLAYER_IDLE_TIMEOUT
+          label: "Player idle timeout"
+          schema:
+            type: int
+            min: 1
+            required: true
+            default: 30
+        - variable: MAX_THREADS
+          label: "Max threads"
+          schema:
+            type: int
+            min: 1
+            required: true
+            default: 8
+        - variable: LEVEL_NAME
+          label: "Level name"
+          schema:
+            type: string
+            required: true
+            default: "Bedrock level"
+        - variable: LEVEL_SEED
+          label: "Level seed"
+          schema:
+            type: string
+            default: ""
+        - variable: DEFAULT_PLAYER_PERMISSION_LEVEL
+          label: "Default player permission level"
+          schema:
+            type: string
+            required: true
+            default: "member"
+            enum:
+              - value: "visitor"
+                description: "Visitor"
+              - value: "member"
+                description: "Member"
+              - value: "operator"
+                description: "Operator"
+        - variable: TEXTUREPACK_REQUIRED
+          label: "Require texturepack"
+          schema:
+            type: boolean
+            default: false
+        - variable: SERVER_AUTHORITATIVE_MOVEMENT
+          label: "Server authoritave movement"
+          schema:
+            type: string
+            required: true
+            default: "server-auth"
+            enum:
+              - value: "client-auth"
+                description: "client-auth"
+              - value: "server-auth"
+                description: "server-auth"
+              - value: "server-auth-with-rewind"
+                description: "server-auth-with-rewind"
+        - variable: PLAYER_MOVEMENT_SCORE_THRESHOLD
+          label: "Player movement score threshold"
+          schema:
+            type: int
+            min: 1
+            required: true
+            default: 20
+        - variable: PLAYER_MOVEMENT_DISTANCE_THRESHOLD
+          label: "Player movement distance threshold"
+          schema:
+            type: string
+            required: true
+            default: "0.3"
+        - variable: PLAYER_MOVEMENT_DURATION_THRESHOLD_IN_MS
+          label: "Player movement duration threshold in MS"
+          schema:
+            type: int
+            min: 1
+            required: true
+            default: 500
+        - variable: CORRECT_PLAYER_MOVEMENT
+          label: "Enable/Disable Player movement correction"
+          schema:
+            type: boolean
+            default: false
   - variable: TZ
     label: Timezone
     group: Container Configuration
@@ -261,34 +449,6 @@ questions:
                       label: Value
                       schema:
                         type: string
-  - variable: mariadbDatabase
-    group: "App Configuration"
-    label: "Database Name"
-    schema:
-      type: string
-      default: "mydatabase"
-      required: true
-  - variable: mariadbUsername
-    group: "App Configuration"
-    label: "Database User"
-    schema:
-      type: string
-      default: "mydatabaseuser"
-      required: true
-  - variable: mariadbPassword
-    group: "App Configuration"
-    label: "Database Password"
-    schema:
-      type: string
-      default: ""
-      required: true
-  - variable: mariadbRootPassword
-    group: "App Configuration"
-    label: "Root Password"
-    schema:
-      type: string
-      default: ""
-      required: true
   - variable: service
     group: Networking and Services
     label: Configure Service(s)
@@ -386,7 +546,7 @@ questions:
                             description: "This port exposes the container port on the service"
                             schema:
                               type: int
-                              default: 3306
+                              default: 19132
                               required: true
                           - variable: advanced
                             label: Show Advanced Settings
@@ -427,7 +587,7 @@ questions:
                                   description: "The internal(!) port on the container the Application runs on"
                                   schema:
                                     type: int
-                                    default: 3306
+                                    default: 19132
   - variable: serviceexpert
     group: Networking and Services
     label: Show Expert Config
@@ -694,7 +854,7 @@ questions:
                                     type: int
                                     min: 9000
                                     max: 65535
-  - variable: volumeClaimTemplates
+  - variable: persistence
     label: Integrated Persistent Storage
     description: Integrated Persistent Storage
     group: Storage and Persistence
@@ -702,12 +862,12 @@ questions:
       additional_attrs: true
       type: dict
       attrs:
-        - variable: data
-          label: "DB Storage"
-          description: "Stores the Application Database."
+        - variable: config
+          label: "App Config Storage"
+          description: "Stores the Application Configuration."
           schema:
+            additional_attrs: true
             type: dict
-            hidden: false
             attrs:
               - variable: type
                 label: Type of Storage
@@ -824,14 +984,14 @@ questions:
                 schema:
                   show_if: [["type", "=", "pvc"]]
                   type: string
-                  default: "SCALE-ZFS"
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  type: string
-                  default: "/bitnami/mariadb"
-                  hidden: true
+                  default: ReadWriteOnce
+                  enum:
+                    - value: ReadWriteOnce
+                      description: ReadWriteOnce
+                    - value: ReadOnlyMany
+                      description: ReadOnlyMany
+                    - value: ReadWriteMany
+                      description: ReadWriteMany
               - variable: advanced
                 label: Show Advanced Options
                 schema:
@@ -1362,7 +1522,7 @@ questions:
           description: "The groupID this App of the user running the application"
           schema:
             type: int
-            default: 0
+            default: 568
         - variable: fsGroup
           label: "fsGroup"
           description: "The group that should own ALL storage."
@@ -1926,8 +2086,6 @@ questions:
                       description: OpenVPN
                     - value: wireguard
                       description: Wireguard
-                    - value: tailscale
-                      description: Tailscale
               - variable: openvpn
                 label: OpenVPN Settings
                 schema:
@@ -1947,61 +2105,6 @@ questions:
                         type: string
                         default: ""
                         required: true
-              - variable: tailscale
-                label: Tailscale Settings
-                schema:
-                  type: dict
-                  show_if: [["type", "=", "tailscale"]]
-                  attrs:
-                    - variable: authkey
-                      label: Authentication Key
-                      description: Provide an auth key to automatically authenticate the node as your user account.
-                      schema:
-                        type: string
-                        private: true
-                        default: ""
-                    - variable: accept_dns
-                      label: Accept DNS
-                      description: Accept DNS configuration from the admin console.
-                      schema:
-                        type: boolean
-                        default: false
-                    - variable: userspace
-                      label: Userspace
-                      description: Userspace Networking mode allows running Tailscale where you do not have access to create a VPN tunnel device.
-                      schema:
-                        type: boolean
-                        default: false
-                    - variable: routes
-                      label: Routes
-                      description: Expose physical subnet routes to your entire Tailscale network.
-                      schema:
-                        type: string
-                        default: ""
-                    - variable: dest_ip
-                      label: Destination IP
-                      description: Tells the DNAT mechanism which Destination IP to set in the IP header, and where to send packets that are matched.
-                      schema:
-                        type: string
-                        default: ""
-                    - variable: sock5_server
-                      label: Sock5 Server
-                      description: Sock5 Server
-                      schema:
-                        type: string
-                        default: ""
-                    - variable: extra_args
-                      label: Extra Args
-                      description: Extra Args
-                      schema:
-                        type: string
-                        default: ""
-                    - variable: daemon_extra_args
-                      label: Tailscale Daemon Extra Args
-                      description: Tailscale Daemon Extra Args
-                      schema:
-                        type: string
-                        default: ""
               - variable: killSwitch
                 label: Enable Killswitch
                 schema:
@@ -2070,6 +2173,7 @@ questions:
                       schema:
                         type: string
                         default: ""
+                        required: true
               - variable: envList
                 label: VPN Environment Variables
                 schema:
