@@ -27,9 +27,7 @@ persistence:
   data:
     enabled: true
     mountPath: "/var/lib/pterodactyl/"
-  logs:
-    enabled: true
-    mountPath: "/var/log/pterodactyl/"
+    hostPath: "/var/lib/pterodactyl/"
   socket:
     enabled: true
     type: hostPath
