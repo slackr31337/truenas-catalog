@@ -1,6 +1,6 @@
 groups:
   - description: "Pterodactyl Panel App configuration"
-    name: "Pterodactyl Panel Configuration"
+    name: "App Configuration"
   - description: "Configure workload deployment"
     name: "Controller"
   - description: "Configure storage for Pterodactyl Panel App"
@@ -659,6 +659,7 @@ questions:
           variable: logs
       type: dict
     variable: appVolumeMounts
+
   - group: "Storage"
     label: "Extra Host Path Volumes"
     schema:
@@ -683,6 +684,7 @@ questions:
           variable: extraAppVolume
       type: list
     variable: extraAppVolumeMounts
+
   - group: "Resource Limits"
     label: "Enable Pod resource limits"
     schema:
@@ -849,31 +851,45 @@ questions:
       type: dict
     variable: podSecurityContext
 
-  - group: "Pterodactyl Panel Configuration"
-    label: "Pterodactyl Panel Config"
+  - variable: appUrl
+    group: "App Configuration"
+    label: "Panel URL"
     schema:
-      additional_attrs: true
-      attrs:
-        - label: "Pterodactyl Panel URL"
-          schema:
-            default: "http://panel.example.com"
-            editable: true
-            required: true
-            type: string
-          variable: APP_URL
-        - label: "MariaDB Server hostname or IP address"
-          schema:
-            default: "mariadb.ix-mariadb.svc.cluster.local"
-            editable: true
-            required: true
-            type: string
-          variable: DB_HOST
-        - label: "Redis Server hostname or IP address"
-          schema:
-            default: "redis.ix-redis.svc.cluster.local"
-            editable: true
-            required: true
-            type: string
-          variable: REDIS_HOST
-      type: dict
-    variable: pterodactylConfig
+      type: string
+      default: "http://panel.example.com"
+      required: true
+  - variable: mariadbHost
+    group: "App Configuration"
+    label: "Database Host"
+    schema:
+      type: string
+      default: "mariadb.ix-mariadb.svc.cluster.local"
+      required: true
+  - variable: mariadbPassword
+    group: "App Configuration"
+    label: "Database Password"
+    schema:
+      type: string
+      default: ""
+      required: true
+  - variable: mariadbDatabase
+    group: "App Configuration"
+    label: "Database"
+    schema:
+      type: string
+      default: "panel"
+      required: true
+  - variable: redisHost
+    group: "App Configuration"
+    label: "Redis Host"
+    schema:
+      type: string
+      default: "mariadb.ix-mariadb.svc.cluster.local"
+      required: true
+  - variable: redisPassword
+    group: "App Configuration"
+    label: "Redis Password"
+    schema:
+      type: string
+      default: ""
+      required: true
