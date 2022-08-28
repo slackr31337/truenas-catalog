@@ -231,7 +231,7 @@ questions:
             type: string
             default: "redis"
             show_if: [[CACHE_DRIVER, "=", "redis"]]
-        - variable: REDIS_HOST
+        - variable: QUEUE_DRIVER
           label: "Queue Driver"
           schema:
             type: string
