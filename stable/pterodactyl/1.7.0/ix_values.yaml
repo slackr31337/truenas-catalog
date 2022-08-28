@@ -25,8 +25,8 @@ env:
   CACHE_DRIVER: "redis"
   SESSION_DRIVER: "redis"
   QUEUE_DRIVER: "redis"
-  REDIS_HOST: "localhost"
-  DB_HOST: "localhost"
+  REDIS_HOST: "redist_host_not_set"
+  DB_HOST: "mariadb_host_not_set"
   DB_PORT: 3306
   DB_DATABASE: "panel"
 

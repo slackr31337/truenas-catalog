@@ -208,23 +208,35 @@ questions:
             type: int
             required: true
             default: 3306
-        - variable: TYPE
-          label: "Cache Server Type"
+        - variable: CACHE_DRIVER
+          label: "Cache Driver"
           schema:
             type: string
             required: true
-            default: "REDIS"
+            default: "redis"
             enum:
-              - value: "REDIS"
-                description: "Redis"
-              - value: "MEMCACHED"
-                description: "Memcached"
-        - variable: REDIS_SERVER
+              - value: "redis"
+                description: "Redis Server"
+              - value: "memcached"
+                description: "Memcached Server"
+        - variable: REDIS_HOST
           label: "Redis Host"
           schema:
             type: string
             default: "redis.ix-redis.svc.cluster.local"
-            show_if: [[TYPE, "=", "REDIS"]]
+            show_if: [[CACHE_DRIVER, "=", "redis"]]
+        - variable: SESSION_DRIVER
+          label: "Session Driver"
+          schema:
+            type: string
+            default: "redis"
+            show_if: [[CACHE_DRIVER, "=", "redis"]]
+        - variable: REDIS_HOST
+          label: "Queue Driver"
+          schema:
+            type: string
+            default: "redis"
+            show_if: [[CACHE_DRIVER, "=", "redis"]]
         - variable: APP_URL
           label: "URL to panel"
           schema:
