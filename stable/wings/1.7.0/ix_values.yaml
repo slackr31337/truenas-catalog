@@ -26,6 +26,7 @@ persistence:
     mountPath: "/etc/pterodactyl/"
   data:
     enabled: true
+    type: hostPath
     mountPath: "/var/lib/pterodactyl/"
     hostPath: "/var/lib/pterodactyl/"
   socket:
