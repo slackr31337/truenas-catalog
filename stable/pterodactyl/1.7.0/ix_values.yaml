@@ -40,6 +40,9 @@ persistence:
   logs:
     enabled: true
     mountPath: "/app/storage/logs"
+  mounts:
+    enabled: true
+    mountPath: "/app/storage/mounts"
 
 service:
   main:
