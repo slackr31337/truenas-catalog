@@ -16,7 +16,7 @@ secretEnv:
 
 env:
   TZ: "UTC"
-  WINGS_USERNAME: "pterodactyl"
+  WINGS_USERNAME: "apps"
   WINGS_UID: 568
   WINGS_GID: 568
 
