@@ -29,20 +29,21 @@ persistence:
     type: hostPath
     mountPath: "/var/lib/pterodactyl/"
     hostPath: "/var/lib/pterodactyl/"
-  socket:
+  temp:
     enabled: true
     type: hostPath
-    hostPath: "/run/docker.sock"
-    mountPath: "/var/run/docker.sock"
+    hostPath: "/tmp/pterodactyl/"
+    mountPath: "/tmp/pterodactyl/"
   containers:
     enabled: true
     type: hostPath
     hostPath: "/mnt/pool01/ix-applications/docker/containers"
     mountPath: "/var/lib/docker/containers/"
-  temp:
+  socket:
     enabled: true
-    mountPath: "/tmp/pterodactyl/"
-    type: "emptyDir"
+    type: hostPath
+    hostPath: "/run/docker.sock"
+    mountPath: "/var/run/docker.sock"
 
 service:
   main:
