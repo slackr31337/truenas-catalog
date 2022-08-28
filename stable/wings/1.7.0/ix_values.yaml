@@ -1,0 +1,46 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: ghcr.io/pterodactyl/wings
+  tag: v1.7.0
+
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+
+podSecurityContext:
+  runAsUser: 0
+  runAsGroup: 0
+
+secretEnv:
+  DB_PASSWORD: "secret"
+
+env:
+  TZ: "UTC"
+  WINGS_USERNAME: "pterodactyl"
+  WINGS_UID: 568
+  WINGS_GID: 568
+
+persistence:
+  data:
+    enabled: true
+    mountPath: "/app/var/"
+  logs:
+    enabled: true
+    mountPath: "/app/storage/logs"
+
+service:
+  main:
+    ports:
+      main:
+        targetPort: 8080
+        port: 8080
+  ssh:
+    enabled: true
+    ports:
+      ssh:
+        enabled: true
+        targetPort: 2022
+        port: 2022
+
+portal:
+  enabled: true

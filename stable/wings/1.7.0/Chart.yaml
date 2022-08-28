@@ -1,0 +1,27 @@
+apiVersion: v2
+appVersion: "2022.08.20"
+
+dependencies:
+  - name: common
+    repository: https://library-charts.truecharts.org
+    version: 10.5.0
+deprecated: false
+description: Pterodactyl® is a free, open-source game server management panel. Wings is the next generation server control plane.
+home: https://github.com/slackr31337/truenas-catalog/tree/main/stable/wings
+icon: https://cdn.pterodactyl.io/logos/new/pterodactyl_logo.png
+
+keywords:
+- games
+- minecraft
+kubeVersion: '>=1.16.0-0'
+name: wings
+version: 1.7.0
+sources:
+- https://github.com/pterodactyl/wings
+- https://ghcr.io/pterodactyl/panel
+type: application
+annotations:
+  truecharts.org/catagories: |
+    - games
+  truecharts.org/SCALE-support: "true"
+  truecharts.org/grade: U
