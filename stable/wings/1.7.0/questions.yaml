@@ -686,9 +686,9 @@ questions:
       additional_attrs: true
       type: dict
       attrs:
-        - variable: data
-          label: "App Data Storage"
-          description: "Stores the Application Data. (/var/lib/pterodactyl/)"
+        - variable: config
+          label: "App Config Storage (/etc/pterodactyl/)"
+          description: "Stores the Application Configuration."
           schema:
             additional_attrs: true
             type: dict
@@ -863,9 +863,9 @@ questions:
                                   label: Value
                                   schema:
                                     type: string
-        - variable: app
-          label: "App Config Storage"
-          description: "Stores the Application Configuration. (/etc/pterodactyl/)"
+        - variable: data
+          label: "App Data Storage (/var/lib/pterodactyl/)"
+          description: "Stores the Application Data."
           schema:
             additional_attrs: true
             type: dict
@@ -1041,8 +1041,8 @@ questions:
                                   schema:
                                     type: string
         - variable: logs
-          label: "Pterodactyl App Logs"
-          description: "Stores the Application Logs. (/var/log/pterodactyl/)"
+          label: "Pterodactyl App Logs (/var/log/pterodactyl/)"
+          description: "Stores the Application Logs."
           schema:
             additional_attrs: true
             type: dict
