@@ -3,50 +3,20 @@ image:
   repository: ghcr.io/pterodactyl/panel
   tag: v1.10.1
 
-controller:
-  # -- Set the controller type.
-  # Valid options are deployment, daemonset or statefulset
-  type: statefulset
-  # -- Number of desired pods
-  replicas: 1
-  # -- Set the controller upgrade strategy
-  # For Deployments, valid values are Recreate (default) and RollingUpdate.
-  # For StatefulSets, valid values are OnDelete and RollingUpdate (default).
-  # DaemonSets ignore this.
-  strategy: RollingUpdate
-  rollingUpdate:
-    # -- Set deployment RollingUpdate max unavailable
-    unavailable: 1
-    # -- Set deployment RollingUpdate max surge
-    surge:
-    # -- Set statefulset RollingUpdate partition
-    partition:
-  # -- ReplicaSet revision history limit
-  revisionHistoryLimit: 3
-
 securityContext:
   readOnlyRootFilesystem: false
+  runAsNonRoot: false
 
 podSecurityContext:
   runAsUser: 0
   runAsGroup: 0
 
-service:
-  main:
-    ports:
-      main:
-        targetPort: 80
-        port: 80
-
-secret:
-  credentials:
-    enabled: true
-    data:
-      mariadb-password: '{{ ( .Values.mariadbPassword | default "empty" ) }}'
-      redis-password: '{{ ( .Values.redisPassword | default "empty" ) }}'
+secretEnv:
+  DB_PASSWORD: "secret"
+  REDIS_PASSWORD: "secret"
 
 env:
-  APP_URL: "{{ .Values.appUrl }}"
+  APP_URL: "http://panel.example.com"
   APP_ENV: "production"
   APP_ENVIRONMENT_ONLY: "false"
   APP_TIMEZONE: "UTC"
@@ -55,18 +25,28 @@ env:
   CACHE_DRIVER: "redis"
   SESSION_DRIVER: "redis"
   QUEUE_DRIVER: "redis"
-  REDIS_HOST: "{{ .Values.redisHost }}"
-  REDIS_PASSWORD:
-    secretKeyRef:
-      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
-      key: "redis-password"
-  DB_HOST: "{{ .Values.mariaHost }}"
+  REDIS_HOST: "localhost"
+  DB_HOST: "localhost"
   DB_PORT: 3306
-  DB_DATABASE: "{{ .Values.mariadbDatabase }}"
-  DB_PASSWORD:
-    secretKeyRef:
-      name: '{{ .Values.existingSecret | default ( printf "%s-credentials" ( include "tc.common.names.fullname" . ) ) }}'
-      key: "mariadb-password"
+  DB_DATABASE: "panel"
+
+persistence:
+  data:
+    enabled: true
+    mountPath: "/app/var/"
+  nginx:
+    enabled: true
+    mountPath: "/etc/nginx/http.d/"
+  logs:
+    enabled: true
+    mountPath: "/app/storage/logs"
+
+service:
+  main:
+    ports:
+      main:
+        targetPort: 80
+        port: 80
 
 portal:
   enabled: true

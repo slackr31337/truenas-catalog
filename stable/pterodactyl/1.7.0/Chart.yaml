@@ -1,18 +1,27 @@
 apiVersion: v2
 appVersion: "2022.08.20"
-version: 1.7.0
+
 dependencies:
-- name: common
-  repository: file://../../../library/common/2207.0.0
-  version: 2207.0.0
+  - name: common
+    repository: https://library-charts.truecharts.org
+    version: 10.5.0
+deprecated: false
 description: Pterodactyl® is a free, open-source game server management panel
 home: https://github.com/slackr31337/truenas-catalog/tree/main/stable/pterodactyl
 icon: https://cdn.pterodactyl.io/logos/new/pterodactyl_logo.png
-name: pterodactyl
+
 keywords:
 - games
 - minecraft
 kubeVersion: '>=1.16.0-0'
+name: pterodactyl
+version: 1.7.0
 sources:
 - https://github.com/pterodactyl/panel
 - https://ghcr.io/pterodactyl/panel
+type: application
+annotations:
+  truecharts.org/catagories: |
+    - games
+  truecharts.org/SCALE-support: "true"
+  truecharts.org/grade: U
