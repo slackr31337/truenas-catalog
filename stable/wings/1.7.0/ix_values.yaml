@@ -21,12 +21,29 @@ env:
   WINGS_GID: 568
 
 persistence:
+  config:
+    enabled: true
+    mountPath: "/etc/pterodactyl/"
   data:
     enabled: true
-    mountPath: "/app/var/"
+    mountPath: "/var/lib/pterodactyl/"
   logs:
     enabled: true
-    mountPath: "/app/storage/logs"
+    mountPath: "/var/log/pterodactyl/"
+  socket:
+    enabled: true
+    type: hostPath
+    hostPath: "/run/docker.sock"
+    mountPath: "/var/run/docker.sock"
+  containers:
+    enabled: true
+    type: hostPath
+    hostPath: "/mnt/pool01/ix-applications/docker/containers"
+    mountPath: "/var/lib/docker/containers/"
+  temp:
+    enabled: true
+    mountPath: "/tmp/pterodactyl/"
+    type: "emptyDir"
 
 service:
   main:
