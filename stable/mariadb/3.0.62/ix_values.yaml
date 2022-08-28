@@ -56,10 +56,10 @@ env:
 podSecurityContext:
   runAsGroup: 0
 
-volumeClaimTemplates:
-  data:
-    enabled: true
-    mountPath: "/bitnami/mariadb"
+#volumeClaimTemplates:
+#  data:
+#    enabled: true
+#    mountPath: "/bitnami/mariadb"
 
 # -- Probe configuration
 # -- [[ref]](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)

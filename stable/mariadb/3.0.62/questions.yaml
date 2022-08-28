@@ -830,7 +830,7 @@ questions:
                 description: "Path inside the container the storage is mounted"
                 schema:
                   type: string
-                  default: "/bitnami/mariadb"
+                  default: "/bitnami/mariadb/data"
                   hidden: true
               - variable: advanced
                 label: Show Advanced Options
