@@ -3,8 +3,6 @@ groups:
     description: "Image to be used for container"
   - name: "Controller"
     description: "Configure workload deployment"
-  - name: "Frigate Settings"
-    description: "Frigate App Config"
   - name: "Container Configuration"
     description: "additional container configuration"
   - name: "App Configuration"
@@ -2124,22 +2122,6 @@ questions:
       $ref:
         - "definitions/gpuConfiguration"
       attrs: []
-  
-  - variable: frigateSetting
-    group: "Frigate Settings"
-    label: "Frigate Settings"
-    schema:
-      additional_attrs: true
-      type: dict
-      attrs:
-        - variable: CONFIG_FILE
-          label: "Frigate config file"
-          description: "yml file to read for configuration /config/config.yml"
-          schema:
-            type: string
-            default: "/config/config.yml"
-            editable: true
-            required: true
 
   - variable: autoscaling
     group: "Advanced"
