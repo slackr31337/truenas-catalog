@@ -2073,7 +2073,7 @@ questions:
                         valid_chars: '^(?!^0(e[0-9]|[EPTGMK]i?|)$)([0-9]+)(|[EPTGMK]i?|e[0-9]+)$'
 
   - variable: deviceList
-    label: "Mount USB devices"
+    label: "Mount USB devices (USB Google Coral)"
     group: "Resources and Devices"
     schema:
       type: list
