@@ -28,7 +28,7 @@ persistence:
     enabled: true
     type: "hostPath"
     mountPath: "/media/frigate"
-  config_file:
+  config-file:
     enabled: true
     type: "hostPath"
     mountPath: "/config/config.yml"
