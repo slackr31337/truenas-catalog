@@ -814,7 +814,7 @@ questions:
       additional_attrs: true
       type: dict
       attrs:
-        - variable: config_file
+        - variable: config-file
           label: "App config.yml file"
           description: "Stores the Application Configuration File. (/config/config.yml)"
           schema:
