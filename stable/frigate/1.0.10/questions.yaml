@@ -2134,10 +2134,10 @@ questions:
       attrs:
         - variable: CONFIG_FILE
           label: "Frigate config file"
-          description: "yml file to read in place of /config/config.yml"
+          description: "yml file to read for configuration /config/config.yml"
           schema:
             type: string
-            default: "/media/frigate.yml"
+            default: "/config/config.yml"
             editable: true
             required: true
 
