@@ -10,7 +10,10 @@ securityContext:
 podSecurityContext:
   runAsUser: 0
   runAsGroup: 0
-  
+
+env:
+  FRIGATE_RTSP_PASSWORD: "secret"
+
 persistence:
   cache:
     enabled: true
@@ -25,10 +28,10 @@ persistence:
     enabled: true
     type: "hostPath"
     mountPath: "/media/frigate"
-  config:
+  config_file:
     enabled: true
     type: "hostPath"
-    mountPath: "/config"
+    mountPath: "/config/config.yml"
 
 service:
   main:
