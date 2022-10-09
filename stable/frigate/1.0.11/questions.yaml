@@ -860,7 +860,7 @@ questions:
                 label: "readOnly"
                 schema:
                   type: boolean
-                  default: false
+                  default: true
               - variable: hostPathSimple
                 label: "hostPath"
                 description: "Path inside the container the storage is mounted"

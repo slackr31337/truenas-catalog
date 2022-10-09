@@ -13,7 +13,7 @@ podSecurityContext:
 
 env:
   FRIGATE_RTSP_PASSWORD: "secret"
-  NVIDIA_DRIVER_CAPABILITIES: "all"
+  NVIDIA_DRIVER_CAPABILITIES: "compute,utility,video"
   NVIDIA_VISIBLE_DEVICES: "all"
 
 persistence:
