@@ -830,12 +830,8 @@ questions:
                 description: "Sets the persistence type, Anything other than PVC could break rollback!"
                 schema:
                   type: string
-                  default: "simpleHP"
+                  default: "hostPath"
                   enum:
-                    - value: "simplePVC"
-                      description: "PVC (simple)"
-                    - value: "simpleHP"
-                      description: "HostPath (simple)"
                     - value: "emptyDir"
                       description: "emptyDir"
                     - value: "pvc"
@@ -1000,12 +996,8 @@ questions:
                 description: Sets the persistence type, Anything other than PVC could break rollback!
                 schema:
                   type: string
-                  default: simpleHP
+                  default: hostPath
                   enum:
-                    - value: simplePVC
-                      description: PVC (simple)
-                    - value: simpleHP
-                      description: Host Path (simple)
                     - value: emptyDir
                       description: emptyDir
                     - value: pvc
@@ -1201,12 +1193,8 @@ questions:
                 description: "Sets the persistence type, Anything other than PVC could break rollback!"
                 schema:
                   type: string
-                  default: "simpleHP"
+                  default: "hostPath"
                   enum:
-                    - value: "simplePVC"
-                      description: "PVC (simple)"
-                    - value: "simpleHP"
-                      description: "HostPath (simple)"
                     - value: "emptyDir"
                       description: "emptyDir"
                     - value: "pvc"
